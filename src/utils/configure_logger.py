@@ -2,14 +2,6 @@ import json
 from datetime import datetime
 from constants import BIOT_APP_NAME
 
-logOptions = [
-  { "function": "debug", "level": "DEBUG", "level_value": 10000 },
-  { "function": "log", "level": "INFO", "level_value": 20000 },
-  { "function": "info", "level": "INFO", "level_value": 30000 },
-  { "function": "warn", "level": "WARN", "level_value": 40000 },
-  { "function": "error", "level": "ERROR", "level_value": 50000 },
-]
-
 class logger:
     trace_id = "traceId-not-set"
 
@@ -51,5 +43,9 @@ class logger:
     @classmethod
     def error(cls, *args):
         cls.print_log("ERROR", 50000, args)
+
+    @classmethod
+    def configure_logger(cls, trace_id):
+        cls.trace_id = trace_id
 
 

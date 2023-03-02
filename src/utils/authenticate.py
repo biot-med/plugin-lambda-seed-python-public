@@ -20,8 +20,7 @@ def authenticate(token):
     try:
         decoded = jws.verify(token, BIOT_PUBLIC_KEY, ALGORITHMS.RS512)
         claims = json.loads(decoded.decode("utf-8"))
-        print("This is the decoded and verified JWT: ", claims)
-        print("Verifying JWT expiration.")
+
         if "exp" not in claims:
             return claims
         try:
@@ -31,14 +30,12 @@ def authenticate(token):
         now = timegm(datetime.utcnow().utctimetuple())
         if exp < now:
             raise ExpiredSignatureError("Signature has expired.")
-        print("Verified JWT expiration. now: " + str(now) + ". exp: " + str(exp))
 
         if BIOT_JWT_PERMISSION is not None and BIOT_JWT_PERMISSION not in claims["scopes"]:
             raise(f"JWT does not have the required permissions. Missing: {BIOT_JWT_PERMISSION}")
         
         return claims
     except Exception as e:
-        print(e)
         raise Exception(JWT_ERROR)
 
 def login (trace_id):
@@ -68,7 +65,5 @@ def login (trace_id):
             "x-b3-traceid": trace_id,
         }
     )
-
-    print("Login response: " + json.dumps(res.json()))
 
     return res.json()["accessToken"]

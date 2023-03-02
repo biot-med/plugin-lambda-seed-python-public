@@ -64,7 +64,7 @@ errors = {
     "internalServerError": internal_server_error
 }
 
-def createErrorResponse (error, trace_id):
+def create_error_response (error, trace_id):
     logger.error("Got error: ", error)
     if error is not None and error in errors:
         return errors[error](error, trace_id)

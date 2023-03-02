@@ -1,5 +1,4 @@
 import requests
-import json
 from constants import API_CALL_ERROR, BIOT_BASE_URL
 
 def call_api_example(new_token, trace_id):
