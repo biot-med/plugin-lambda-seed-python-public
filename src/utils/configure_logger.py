@@ -1,15 +1,15 @@
 import json
 from datetime import datetime
-from constants import BIOT_APP_NAME
+from src.constants import BIOT_APP_NAME
 
 class logger:
     trace_id = "traceId-not-set"
 
     @classmethod
-    def join_message(args):
+    def join_message(cls, args):
         msg_str = ""
         for arg in args:
-            msg_str += arg
+            msg_str += str(arg)
         return msg_str
     
     @classmethod

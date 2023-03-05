@@ -1,13 +1,14 @@
 import requests
-from constants import BIOT_PUBLIC_KEY, JWT_ERROR, BIOT_JWT_PERMISSION, BIOT_BASE_URL, BIOT_SERVICE_USER_ID, BIOT_SERVICE_USER_SECRET_KEY
+from src.constants import BIOT_PUBLIC_KEY, JWT_ERROR, BIOT_JWT_PERMISSION, BIOT_BASE_URL, BIOT_SERVICE_USER_ID, BIOT_SERVICE_USER_SECRET_KEY
 from datetime import datetime
 from calendar import timegm
 from jose import jws
 from jose.constants import ALGORITHMS
 from jose.exceptions import ExpiredSignatureError, JWTClaimsError
+from src.utils.configure_logger import logger
 import json
 
-def authenticate(token):
+def authenticate(token, trace_id):
     """Autheticate the original JWT by verifying signature and expiration.
 
     Args:
@@ -32,10 +33,11 @@ def authenticate(token):
             raise ExpiredSignatureError("Signature has expired.")
 
         if BIOT_JWT_PERMISSION is not None and BIOT_JWT_PERMISSION not in claims["scopes"]:
-            raise(f"JWT does not have the required permissions. Missing: {BIOT_JWT_PERMISSION}")
+            raise Exception(f"JWT does not have the required permissions. Missing: {BIOT_JWT_PERMISSION}")
         
         return claims
     except Exception as e:
+        logger.error('Error: ', e)
         raise Exception(JWT_ERROR)
 
 def login (trace_id):

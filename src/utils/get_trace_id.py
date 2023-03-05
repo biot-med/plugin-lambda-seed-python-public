@@ -1,6 +1,6 @@
 import requests
-from constants import BIOT_BASE_URL
-from configure_logger import logger
+from src.constants import BIOT_BASE_URL
+from src.utils.configure_logger import logger
 # This is a fallback to get a traceId for this lambdas uses only.
 # If it does not exist, it fallbacks to get a traceId from an existing BioT API using it's healthCheck API
 

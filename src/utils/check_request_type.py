@@ -7,10 +7,11 @@ request_types = {
 }
 
 def check_request_type (event):
-    hooktype_key = filter(lambda k: k.lower() == "hooktype", list(event["headeres"].keys()))
+    hooktype_key = list(filter(lambda k: k.lower() == "hooktype", list(event["headers"].keys())))
+    hooktype_key = hooktype_key[0] if len(hooktype_key) > 0 else None
   
-    if hooktype_key is not None and request_types[event["headers"][hooktype_key]] :
-        return request_types[event["headeres"][hooktype_key]]
+    if hooktype_key is not None and event["headers"][hooktype_key] in request_types:
+        return request_types[event["headers"][hooktype_key]]
     else :
         print("No hooktype provided")
         return request_types["NONSPECIFIC"]

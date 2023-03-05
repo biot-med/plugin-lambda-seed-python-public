@@ -1,4 +1,4 @@
-from create_error_response import create_error_response
-from extract_data_from_event import extract_data_from_event
-from perform import perform
-from utils.authenticate import authenticate, login
+from src.interceptor_post_entity.create_error_response import create_error_response
+from src.interceptor_post_entity.extract_data_from_event import extract_data_from_event
+from src.interceptor_post_entity.perform import perform
+from src.utils.authenticate import authenticate, login

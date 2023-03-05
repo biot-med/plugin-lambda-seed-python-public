@@ -1,5 +1,5 @@
-from utils.configure_logger import logger
-from utils.call_to_api_example import call_api_example
+from src.utils.configure_logger import logger
+from src.utils.call_to_api_example import call_api_example
 
 def perform(data, token, trace_id):
     # -----------------------------------------------------------------------------------------

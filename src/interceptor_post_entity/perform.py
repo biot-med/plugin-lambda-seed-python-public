@@ -1,5 +1,5 @@
-from utils.configure_logger import logger
-from utils.call_to_api_example import call_api_example
+from src.utils.configure_logger import logger
+from src.utils.call_to_api_example import call_api_example
 
 
 def perform(data, token, trace_id):
@@ -14,7 +14,7 @@ def perform(data, token, trace_id):
     changed_data = data 
 
     if "firstName" in changed_data["body"]["response"]["entities"][0]["_name"]:
-        changed_data["body"]["response"]["entities"][0]["_name"] = changed_data["body"]["response"]["entities"][0]["_name"] + " LAMBDA" 
+        changed_data["body"]["response"]["entities"][0]["_name"]["firstName"] = changed_data["body"]["response"]["entities"][0]["_name"]["firstName"] + " LAMBDA" 
 
     # This is an example of calling a BioT API (using the token from the service users token)
     # In this case we are making a get patients request to organization API

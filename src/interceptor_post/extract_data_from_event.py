@@ -1,5 +1,5 @@
 import json
-from constants import NO_EVENT_ERROR, NO_DATA_ERROR, JWT_ERROR
+from src.constants import NO_EVENT_ERROR, NO_DATA_ERROR, JWT_ERROR
 
 def extract_data_from_event(event): 
     if event is None:

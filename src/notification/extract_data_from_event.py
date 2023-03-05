@@ -1,5 +1,5 @@
 import json
-from constants import NO_EVENT_ERROR, NO_METADATA_ERROR, NO_DATA_ERROR, JWT_ERROR
+from src.constants import NO_EVENT_ERROR, NO_METADATA_ERROR, NO_DATA_ERROR, JWT_ERROR
 
 def extract_data_from_event (event):
     if event is None or "body" not in event:
@@ -7,7 +7,7 @@ def extract_data_from_event (event):
 
     parsed_event = json.loads(event["body"])
 
-    if "matadata" not in parsed_event or parsed_event["matadata"] is None:
+    if "metadata" not in parsed_event or parsed_event["metadata"] is None:
         raise Exception(NO_METADATA_ERROR)
     if "data" not in parsed_event or parsed_event["data"] is None:
         raise Exception(NO_DATA_ERROR)

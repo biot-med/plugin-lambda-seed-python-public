@@ -1,12 +1,12 @@
-from interceptor_post import index as INTERCEPTOR_POST
-from interceptor_post_entity import index as INTERCEPTOR_POST_ENTITY
-from interceptor_pre import  index as INTERCEPTOR_PRE
-from nonspecific import index as NONSPECIFIC
-from notification import index as NOTIFICATION
+import src.interceptor_post.index as INTERCEPTOR_POST
+import src.interceptor_post_entity.index as INTERCEPTOR_POST_ENTITY
+import src.interceptor_pre.index as INTERCEPTOR_PRE
+import src.nonspecific.index as NONSPECIFIC
+import src.notification.index as NOTIFICATION
 
-from utils.index import *
+from src.utils.index import *
 
-from constants import *
+from src.constants import *
 
 functions_mapper = {
     "INTERCEPTOR_POST": INTERCEPTOR_POST,

@@ -1,5 +1,5 @@
 import requests
-from constants import API_CALL_ERROR, BIOT_BASE_URL
+from src.constants import API_CALL_ERROR, BIOT_BASE_URL
 
 def call_api_example(new_token, trace_id):
     """ This get request asks for patients from organization API.

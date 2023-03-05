@@ -1,6 +1,6 @@
-from utils.configure_logger import logger
-from utils.call_to_api_example import call_api_example
-from utils.generic_success_response import generic_success_response
+from src.utils.configure_logger import logger
+from src.utils.call_to_api_example import call_api_example
+from src.utils.generic_success_response import generic_success_response
 
 def perform (data, token, trace_id):
     # -----------------------------------------------------------------------------------------
