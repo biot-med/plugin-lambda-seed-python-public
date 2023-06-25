@@ -2,7 +2,7 @@ from src.utils.configure_logger import logger
 from src.utils.call_to_api_example import call_api_example
 
 
-def perform(data, token, trace_id):
+def perform(data, token, traceparent):
     # -----------------------------------------------------------------------------------------
 
     # TODO: ADD YOUR CODE HERE !
@@ -20,7 +20,7 @@ def perform(data, token, trace_id):
     # This is an example of calling a BioT API (using the token from the service users token)
     # In this case we are making a get patients request to organization API
 
-    call_example_response = call_api_example(token, trace_id)
+    call_example_response = call_api_example(token, traceparent)
 
     # In this example you perform your logic with the response Here
 

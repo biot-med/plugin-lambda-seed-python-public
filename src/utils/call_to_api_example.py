@@ -1,12 +1,14 @@
 import requests
-from src.constants import API_CALL_ERROR, BIOT_BASE_URL
+from src.constants import API_CALL_ERROR, BIOT_BASE_URL, TRACEPARENT_KEY
 
-def call_api_example(new_token, trace_id):
+# This is a call to a BioT API, it can be any call provided the lambda service user has permission
+
+def call_api_example(new_token, traceparent):
     """ This get request asks for patients from organization API.
 
     Args:
         token (string): JWT for the authorization header.
-        trace_id (string): The trace id.
+        traceparent (string): The traceparent.
 
     Returns:
         dict: empty dict or list of patients.
@@ -19,7 +21,7 @@ def call_api_example(new_token, trace_id):
             url=biot_api_call_url,
             headers={
                 "authorization": "Bearer " + new_token,
-                "x-b3-traceid": trace_id
+                [TRACEPARENT_KEY]: traceparent
             }
         )
 
@@ -29,5 +31,5 @@ def call_api_example(new_token, trace_id):
         patients = response.json()["data"]["patients"] if "data" in response.json() and "patients" in response.json()["data"] else {}
         return patients
 
-    except Exception:
-        raise Exception(API_CALL_ERROR)
+    except Exception as e:
+        raise Exception(API_CALL_ERROR, {"cause": e})

@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from src.constants import BIOT_APP_NAME
+from src.utils.traceparent_utils import parse_traceparent_string
 
 class logger:
     trace_id = "traceId-not-set"
@@ -45,7 +46,5 @@ class logger:
         cls.print_log("ERROR", 50000, args)
 
     @classmethod
-    def configure_logger(cls, trace_id):
-        cls.trace_id = trace_id
-
-
+    def configure_logger(cls, traceparent):
+        cls.trace_id = parse_traceparent_string(traceparent)

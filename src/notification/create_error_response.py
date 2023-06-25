@@ -1,5 +1,6 @@
 from src.constants import API_CALL_ERROR, JWT_ERROR, NO_EVENT_ERROR, NO_DATA_ERROR, BIOT_SERVICE_ENVIRONMENT, BIOT_APP_NAME
 from src.utils.configure_logger import logger
+from src.utils.traceparent_utils import parse_traceparent_string
 
 env_fallback = "Not specified"
 
@@ -64,8 +65,9 @@ errors = {
     "internalServerError": internal_server_error
 }
 
-def create_error_response (error, trace_id):
+def create_error_response (error, traceparent):
     logger.error("Got error: ", error)
+    trace_id = parse_traceparent_string(traceparent)
     if error is not None and error in errors:
         return errors[error](error, trace_id)
     else:

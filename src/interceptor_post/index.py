@@ -1,4 +1,5 @@
 from src.interceptor_post.create_error_response import create_error_response
 from src.interceptor_post.extract_data_from_event import extract_data_from_event
 from src.interceptor_post.perform import perform
-from src.utils.authenticate import authenticate, login
+from src.interceptor_post.authenticate import authenticate
+from src.utils.authenticate import login

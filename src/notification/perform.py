@@ -2,7 +2,7 @@ from src.utils.configure_logger import logger
 from src.utils.call_to_api_example import call_api_example
 from src.utils.generic_success_response import generic_success_response
 
-def perform (data, token, trace_id):
+def perform (data, token, traceparent):
     # -----------------------------------------------------------------------------------------
 
     # TODO: ADD YOUR CODE HERE !
@@ -11,11 +11,11 @@ def perform (data, token, trace_id):
     # In this case we are making a get patients request to organization API
     # Remove this example call and add your code instead
 
-    call_example_response = call_api_example(token, trace_id)
+    call_example_response = call_api_example(token, traceparent)
 
     # In this example you perform your logic with the response Here
 
     logger.info("got callExampleResponse ", call_example_response)
 
     # -----------------------------------------------------------------------------------------
-    return generic_success_response(trace_id)
+    return generic_success_response(traceparent)

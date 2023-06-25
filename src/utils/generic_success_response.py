@@ -1,7 +1,9 @@
-def generic_success_response (traceId):
+from src.constants import TRACEPARENT_KEY
+
+def generic_success_response (traceparent):
     return {
         "statusCode": 200,
         "headers": {
-            "x-b3-traceid": traceId,
+            [TRACEPARENT_KEY]: traceparent,
         }
     }

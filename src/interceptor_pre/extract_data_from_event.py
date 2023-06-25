@@ -1,5 +1,5 @@
 import json
-from src.constants import NO_EVENT_ERROR, NO_DATA_ERROR, JWT_ERROR
+from src.constants import NO_EVENT_ERROR, NO_DATA_ERROR, JWT_ERROR, TRACEPARENT_KEY
 
 def extract_data_from_event(event): 
     if event is None:
@@ -12,7 +12,7 @@ def extract_data_from_event(event):
 
     data = event_with_parsed_data
     event_token = event_headers["authorization"].split(" ")[1]
-    event_trace_id = event_headers["x-b3-traceid"]
+    event_traceparent = event_headers[TRACEPARENT_KEY]
 
     if data is None:
         raise Exception(NO_DATA_ERROR)
@@ -22,5 +22,5 @@ def extract_data_from_event(event):
     return {
         "data": data,
         "event_token": event_token,
-        "event_trace_id": event_trace_id,
+        "event_traceparent": event_traceparent,
     }

@@ -1,7 +1,7 @@
 from src.utils.configure_logger import logger
 from src.utils.generic_success_response import generic_success_response
 
-def perform(data, token, trace_id):
+def perform(data, token, traceparent):
     # -----------------------------------------------------------------------------------------
 
     # TODO: ADD YOUR CODE HERE !
@@ -10,6 +10,6 @@ def perform(data, token, trace_id):
     logger.info("Some action was performed!")
 
     # Return your response here (replace genericSuccessResponse with your response)
-    return generic_success_response(trace_id)
+    return generic_success_response(traceparent)
 
     # -----------------------------------------------------------------------------------------
