@@ -56,7 +56,7 @@ local_dev_constants = {
 
 environment_constants = cloud_constants if os.getenv("AWS_EXECUTION_ENV") is not None else local_dev_constants
 
-# This prepares the BIOT_PUBLIC_KEY to be used with jsonwebtoken's parse (in authenticate function)
+# This prepares the BIOT_PUBLIC_KEY to be used with jose jwt verification (in authenticate function)
 BIOT_PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" + environment_constants["BIOT_PUBLIC_KEY"] + "\n-----END PUBLIC KEY-----"
 
 JWT_PERMISSION = environment_constants["JWT_PERMISSION"]

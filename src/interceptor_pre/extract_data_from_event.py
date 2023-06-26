@@ -11,8 +11,8 @@ def extract_data_from_event(event):
     event_with_parsed_data["body"] = parsed_event_body
 
     data = event_with_parsed_data
-    event_token = event_headers["authorization"].split(" ")[1]
-    event_traceparent = event_headers[TRACEPARENT_KEY]
+    event_token = event_headers["authorization"].split(" ")[1] if "authorization" in event_headers else None
+    event_traceparent = event_headers[TRACEPARENT_KEY] if TRACEPARENT_KEY in event_headers else None
 
     if data is None:
         raise Exception(NO_DATA_ERROR)

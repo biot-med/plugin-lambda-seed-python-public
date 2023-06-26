@@ -4,6 +4,10 @@ from src.constants import BIOT_APP_NAME
 from src.utils.traceparent_utils import parse_traceparent_string
 
 class logger:
+    
+    # The lambdas logs must be structured in the correct format and contain a traceId, so that they are traceable on dataDog.
+    # This restructures the log functions. Alternatively, you can use logging libraries (like Winston, Pino, loglevel or Npmlog)
+
     trace_id = "traceId-not-set"
 
     @classmethod

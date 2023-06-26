@@ -1,4 +1,3 @@
-
 import json
 from src.index import logger, check_request_type, functions_mapper, BIOT_SHOULD_VALIDATE_JWT, create_traceparent
 
@@ -35,8 +34,8 @@ def handler (event, lambda_context=None):
         event_traceparent = extracted_data["event_traceparent"] if "event_traceparent" in extracted_data else None
         metadata = extracted_data["metadata"] if "metadata" in extracted_data else None
 
-        # We extract the traceId from the event
-        # As a fallback, if the traceId is not included, we get a new traceId from a open BioT AIP service
+        # We extract the traceparent from the event
+        # As a fallback, if the traceparent is not included, we get a new traceparent from a open BioT AIP service
         traceparent = event_traceparent if event_traceparent is not None else create_traceparent()
         logger.configure_logger(traceparent)
 

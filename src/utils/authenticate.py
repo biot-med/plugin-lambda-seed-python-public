@@ -5,11 +5,10 @@ from calendar import timegm
 from jose import jws
 from jose.constants import ALGORITHMS
 from jose.exceptions import ExpiredSignatureError, JWTClaimsError
-from src.utils.configure_logger import logger
 import json
 
 def authenticate(token):
-    """Autheticate the original JWT by verifying signature and expiration.
+    """This validates the token sent by the notification service and checks the required permission.
 
     Args:
         token (string): The original JWT.
@@ -60,6 +59,7 @@ def login (traceparent):
 
 
 def check_jwt (token, required_permission = None):
+    # This validates the token sent by the notification service
     try:
         decoded = jws.verify(token, BIOT_PUBLIC_KEY, ALGORITHMS.RS512)
         claims = json.loads(decoded.decode("utf-8"))
@@ -74,15 +74,16 @@ def check_jwt (token, required_permission = None):
         if exp < now:
             raise ExpiredSignatureError("Signature has expired.")
         
-        if required_permission is None:
-            return
-            
-        # TODO: If you need to, update this function to add other permissions to be checked in the JWT
-      
-        # Checks the required permission in the token
-
-        if required_permission not in claims["scopes"]:
-            raise Exception(f'JWT does not have the required permissions. Missing: {required_permission}')
-    except Exception as e:
-        logger.error('Error: ', e)
+    except Exception:
         raise Exception(JWT_ERROR)
+        
+    if required_permission is None:
+        return
+        
+    # TODO: If you need to, update this function to add other permissions to be checked in the JWT
+    
+    # Checks the required permission in the token
+
+    if required_permission not in claims["scopes"]:
+        raise Exception(f'JWT does not have the required permissions. Missing: {required_permission}')
+    
