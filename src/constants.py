@@ -1,12 +1,12 @@
 import os
 
-
 API_CALL_ERROR = "CALL_TO_API_FAILED"
 JWT_ERROR = "JWT_ERROR"
 NO_EVENT_ERROR = "NO_EVENT"
 NO_METADATA_ERROR = "NO_METADATA"
 NO_DATA_ERROR = "NO_DATA"
 TRACEPARENT_KEY = "traceparent"
+
 
 def resolve_should_validate(env_var):
     if env_var is not None:
@@ -54,10 +54,18 @@ local_dev_constants = {
     "JWT_PERMISSION": None
 }
 
+default_headers = {
+    "User-Agent": "PythonPlugin/1.0.0",
+    "Host": "lambda.aws.com",
+    "Accept": "application/json",
+    "Content-Type": "application/json; charset=utf-8",
+}
+
 environment_constants = cloud_constants if os.getenv("AWS_EXECUTION_ENV") is not None else local_dev_constants
 
 # This prepares the BIOT_PUBLIC_KEY to be used with jose jwt verification (in authenticate function)
-BIOT_PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" + environment_constants["BIOT_PUBLIC_KEY"] + "\n-----END PUBLIC KEY-----"
+BIOT_PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" + environment_constants[
+    "BIOT_PUBLIC_KEY"] + "\n-----END PUBLIC KEY-----"
 
 JWT_PERMISSION = environment_constants["JWT_PERMISSION"]
 BIOT_APP_NAME = environment_constants["BIOT_APP_NAME"]

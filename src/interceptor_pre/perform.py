@@ -2,7 +2,7 @@ from src.utils.configure_logger import logger
 from src.utils.call_to_api_example import call_api_example
 
 
-def perform(data, token, traceparent):
+def perform(data, token, traceparent, metadata):
     # -----------------------------------------------------------------------------------------
 
     # TODO: ADD YOUR CODE HERE !
