@@ -8,7 +8,7 @@ class logger:
     # The lambdas logs must be structured in the correct format and contain a traceId, so that they are traceable on dataDog.
     # This restructures the log functions. Alternatively, you can use logging libraries (like Winston, Pino, loglevel or Npmlog)
 
-    trace_id = "traceId-not-set"
+    trace_id = "traceparent-not-set"
 
     @classmethod
     def join_message(cls, args):

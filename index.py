@@ -1,10 +1,12 @@
 import json
+
 from src.index import logger, check_request_type, functions_mapper, BIOT_SHOULD_VALIDATE_JWT, create_traceparent
+
 
 # This is just an example!
 # The structure of the event can be anything
 
-def handler (event, lambda_context=None):
+def handler(event, lambda_context=None):
     # The following two logs are just for debugging. You should remove them as soon as you can, the token should not be printed to logs.
     logger.info("At Lambda start, got event: ", event)
     logger.info("At Lambda start, got body: ", json.loads(event["body"]))
@@ -41,8 +43,8 @@ def handler (event, lambda_context=None):
 
         # This is the authentication process for the lambda itself
         # Note: environment variable BIOT_SHOULD_VALIDATE_JWT should be false if the lambda does not receive a token, otherwise authentication will fail the lambda
-        if BIOT_SHOULD_VALIDATE_JWT == True:
-            authenticate(event_token, traceparent)
+        if BIOT_SHOULD_VALIDATE_JWT:
+            authenticate(event_token)
 
         # Here we are requesting a token for the lambda
         # It is done using a service users BIOT_SERVICE_USER_ID and BIOT_SERVICE_USER_SECRET_KEY that should be set to an environment variable
@@ -61,4 +63,3 @@ def handler (event, lambda_context=None):
         # This should return the proper error responses by the type of error that occurred
         # See the createErrorResponse function for your specific lambda usage
         return create_error_response(e, traceparent)
-

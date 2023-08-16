@@ -1,7 +1,7 @@
 from src.utils.configure_logger import logger
 from src.utils.generic_success_response import generic_success_response
 
-def perform(data, token, traceparent):
+def perform(data, token, traceparent, metadata):
     # -----------------------------------------------------------------------------------------
 
     # TODO: ADD YOUR CODE HERE !
