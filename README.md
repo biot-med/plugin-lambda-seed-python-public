@@ -62,8 +62,6 @@ For the lambda to work as is, the hooktype property must be specified in the hea
 
 - `BIOT_SERVICE_ENVIRONMENT` - for instance "gen2int"
 
-- `BIOT_PUBLIC_KEY` - the public key to verify the token sent by the notification service
-
 - `BIOT_SERVICE_USER_ID` - the lambdas service users id
 
 - `BIOT_SERVICE_USER_SECRET_KEY` - the lambdas service users secret key

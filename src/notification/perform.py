@@ -16,7 +16,7 @@ def perform(data, token, traceparent, metadata):
 
     # In this example you perform your logic with the response Here
 
-    logger.info("got callExampleResponse ", call_example_response)
+    logger.info("In notification lambda, got callExampleResponse ", call_example_response)
 
     # -----------------------------------------------------------------------------------------
     return generic_success_response(traceparent)

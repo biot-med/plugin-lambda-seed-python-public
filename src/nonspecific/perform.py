@@ -7,7 +7,7 @@ def perform(data, token, traceparent, metadata):
     # TODO: ADD YOUR CODE HERE !
     # Remove this example call and add your code instead
 
-    logger.info("Some action was performed!")
+    logger.info("In nonspecific lambda, some action was performed!")
 
     # Return your response here (replace genericSuccessResponse with your response)
     return generic_success_response(traceparent)
