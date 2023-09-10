@@ -6,8 +6,9 @@
 
 # Version 1.2.0
 **Released by**: David Kleinerman + Dan Tamam **Release Date**: 2023-08-16
-## Changes
+## Breaking Changes
 - Trace id is now in w3c format
+## Changes
 - Temporarily added dependency files
 
 # Version 1.1.0
