@@ -1,5 +1,5 @@
-from src.utils.configure_logger import logger
 from src.utils.call_to_api_example import call_api_example
+from src.utils.configure_logger import logger
 
 
 def perform(data, token, traceparent, metadata):
@@ -24,7 +24,7 @@ def perform(data, token, traceparent, metadata):
 
     # In this example you perform your logic with the response Here
 
-    logger.info("In POST got callExampleResponse ", call_example_response)
+    logger.info("In pre interceptor lambda, got callExampleResponse ", call_example_response)
 
     # -----------------------------------------------------------------------------------------
 

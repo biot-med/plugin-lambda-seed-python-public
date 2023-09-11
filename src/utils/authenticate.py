@@ -6,15 +6,16 @@ import requests
 from jose import jws
 from jose.constants import ALGORITHMS
 from jose.exceptions import ExpiredSignatureError, JWTClaimsError
-from src.constants import BIOT_PUBLIC_KEY, JWT_ERROR, JWT_PERMISSION, BIOT_BASE_URL, BIOT_SERVICE_USER_ID, \
+from src.constants import GET_PUBLIC_KEY_API_URL, JWT_ERROR, JWT_PERMISSION, BIOT_BASE_URL, BIOT_SERVICE_USER_ID, \
     BIOT_SERVICE_USER_SECRET_KEY, TRACEPARENT_KEY
 
 
-def authenticate(token):
+def authenticate(token, traceparent):
     """This validates the token sent by the notification service and checks the required permission.
 
     Args:
         token (string): The original JWT.
+        traceparent (string): traceparent
     """
 
     try:
@@ -24,7 +25,7 @@ def authenticate(token):
             This implementation checks JWT_PERMISSION from constants.py.
             You can define it in your plugin's environment variables, see constants.py
         """
-        check_jwt(token, JWT_PERMISSION)
+        check_jwt(token, traceparent, JWT_PERMISSION)
         return
     except Exception as e:
         raise Exception(JWT_ERROR, {"cause": e})
@@ -62,10 +63,41 @@ def login(traceparent):
     return res.json()["accessToken"]
 
 
-def check_jwt(token, required_permission=None):
+def get_public_key(traceparent):
+    """Gets the public key.
+
+    Args:
+        traceparent (string): traceparent.
+
+    Returns:
+        string: The public key to be used by the lambda.
+    """
+
+    if BIOT_BASE_URL is None:
+        raise Exception("No BIOT_BASE_URL")
+
+    url = BIOT_BASE_URL + GET_PUBLIC_KEY_API_URL
+    res = requests.get(
+        url,
+        headers={
+            TRACEPARENT_KEY: traceparent,
+        }
+    )
+
+    return res.json()["publicKey"]
+
+
+def construct_public_key(public_key_response):
+    return "-----BEGIN PUBLIC KEY-----\n" + public_key_response + "\n-----END PUBLIC KEY-----"
+
+
+def check_jwt(token, traceparent, required_permission=None):
     # This validates the token sent by the notification service
     try:
-        decoded = jws.verify(token, BIOT_PUBLIC_KEY, ALGORITHMS.RS512)
+        public_key_response = get_public_key(traceparent)
+        public_key = construct_public_key(public_key_response)
+
+        decoded = jws.verify(token, public_key, ALGORITHMS.RS512)
         claims = json.loads(decoded.decode("utf-8"))
 
         if "exp" not in claims:
