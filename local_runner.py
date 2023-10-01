@@ -1,6 +1,6 @@
-from index import handler
+from lambda_function import lambda_handler
 from mock_event import mock_event
 
 print('-------- running locally --------')
-handler(mock_event)
+lambda_handler(mock_event)
 print('------------ finish! ------------')

@@ -72,6 +72,17 @@ For the lambda to work as is, the hooktype property must be specified in the hea
 
 _Read the comments and todos specified in the code to further understand the functions and flow._
 
+<!-- TODO: ADI.... -->
+### How to install 
+run with venv
+```
+python3 -m venv seedtest
+```
+then run (on Mac)
+```
+source seedtest/bin/activate
+```
+then run pip install -r requirements.txt (inside the virtual machine)
 ### Pack
 
 Use the pack in scripts folder to zip all required files to upload to the lambda
