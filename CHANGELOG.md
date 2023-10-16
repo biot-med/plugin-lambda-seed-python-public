@@ -1,3 +1,9 @@
+# Version 1.3.0
+**Released by**: Adi Siman Tov **Release Date**: 2023-10-16
+## Changes
+- Changed seed structure - now using venv and requirements.txt file.
+- Changed pack script to use dependencies from the venv directory
+- **NOTE** .gitignore and pack script expects the venv name to be "seedenv"
 # Version 1.2.1
 **Released by**: Dan Tamam **Release Date**: 2023-09-10
 ## Changes
