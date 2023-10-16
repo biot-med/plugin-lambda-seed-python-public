@@ -1,16 +1,26 @@
 import os
 import shutil
 import traceback
-from distutils.dir_util import copy_tree
+from shutil import copytree, ignore_patterns
 
 dist_path = "../dist"
 
 try: 
 
-    if not os.path.exists(dist_path):
-        os.makedirs(dist_path + "/src")
+    print("Copy dependencies")
 
-    copy_tree('./src', dist_path + "/src")
+    copytree(
+        './seedenv/lib/python3.11/site-packages', 
+        dist_path, 
+        symlinks=True, 
+        ignore=ignore_patterns("pip", 'pkg_resources', 'setuptools', '_distutils_hack', 'distutils-precedence.pth',
+                               '*.dist-info'))
+    
+    print("Copy all src")
+
+    copytree('./src', dist_path + "/src", symlinks=True)
+
+    print("Copy lambda_function.py file")
 
     shutil.copyfile("./lambda_function.py", dist_path + "/lambda_function.py")
 
@@ -19,7 +29,7 @@ try:
     # if os.path.exists('../package'):
     #     copy_tree('../package', dist_path)  
 
-    copy_tree('./seedtest/lib/python3.11/site-packages', dist_path)
+    print("Zip")
 
     shutil.make_archive("plugin", 'zip', dist_path)
 

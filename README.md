@@ -70,23 +70,38 @@ For the lambda to work as is, the hooktype property must be specified in the hea
 
 ## Setups
 
-_Read the comments and todos specified in the code to further understand the functions and flow._
+in command line (use python/python3 depends on the installation)
+```
+python3 -m venv seedenv
+```
+run (on Mac)
+```
+source seedenv/bin/activate
+```
+(windows)
+```
+./seedenv/bin/activate
+```
+then run (while the virtual machine is activated)
+```
+pip install -r requirements.txt 
+```
 
-<!-- TODO: ADI.... -->
-### How to install 
-run with venv
+** If you add a new dependency while working, make sure to add the dependency to the requirements.txt file by running  
 ```
-python3 -m venv seedtest
+pip freeze > requirements.txt 
 ```
-then run (on Mac)
-```
-source seedtest/bin/activate
-```
-then run pip install -r requirements.txt (inside the virtual machine)
+
+### Start working
+
+_Read the comments and TODOs specified in the code to further understand the functions and flow._
 ### Pack
 
 Use the pack in scripts folder to zip all required files to upload to the lambda
-Run: `python zip.py`
+Run: 
+```
+python3 scripts/pack.py
+```
 
 ### Cleaning up unwanted code
 
