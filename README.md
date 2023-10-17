@@ -119,3 +119,13 @@ For running locally you can use the dev constants (in constants file), Just make
 
 You can read about the interceptors' api calls here:
 https://softimize.atlassian.net/wiki/spaces/WIKI/pages/3013247000/Interceptor+Plugin
+
+
+### Maintenance Notes
+1. The pack script has some assumptions:
+  - The handler function is in the index.py (its zipped specifically) 
+  - The venv directory is called seedenv (seedenv/lib/python3.11/site-packages is zipped specifically)
+  - Some dependencies directories are NOT zipped - 
+    - "pip", 'pkg_resources', 'setuptools', '_distutils_hack', 'distutils-precedence.pth' that are added automatically when creating the venv
+    - all folders with '.dist-info' suffix
+2. Whenever a change is being made, make sure to update the version in the \_\_version\_\_.py file

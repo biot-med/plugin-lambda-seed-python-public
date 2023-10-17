@@ -1,3 +1,9 @@
+# The script create a zip file to upload as a BioT plugin.
+# Assumptions 
+# 1. The handler function is in the index.py (its zipped specifically)
+# 2. The venv directory is called seedenv (seedenv/lib/python3.11/site-packages is zipped specifically)
+# 3. Some dependencies are NOT zipped - base things like pip
+
 import os
 import shutil
 import traceback
