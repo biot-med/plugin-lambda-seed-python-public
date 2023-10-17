@@ -20,9 +20,9 @@ try:
 
     copytree('./src', dist_path + "/src", symlinks=True)
 
-    print("Copy lambda_function.py file")
+    print("Copy index.py file")
 
-    shutil.copyfile("./lambda_function.py", dist_path + "/lambda_function.py")
+    shutil.copyfile("./index.py", dist_path + "/index.py")
 
     # Installed Python dependencies must be included inside the packed zipped plugin.
     # All the dependencies need to be installed localy in the "./package" folder so the script could pack them properly.

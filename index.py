@@ -6,7 +6,7 @@ from src.index import logger, check_request_type, functions_mapper, BIOT_SHOULD_
 # This is just an example!
 # The structure of the event can be anything
 
-def lambda_handler(event, lambda_context=None):
+def handler(event, lambda_context=None):
     # The following two logs are just for debugging. You should remove them as soon as you can, the token should not be printed to logs.
     logger.info("At Lambda start, got event: ", event)
     logger.info("At Lambda start, got body: ", json.loads(event["body"]))
