@@ -4,40 +4,36 @@
 # 2. The venv directory is called seedenv (seedenv/lib/python3.11/site-packages is zipped specifically)
 # 3. Some dependencies are NOT zipped - base things like pip
 
-import os
 import shutil
 import traceback
-from shutil import copytree, ignore_patterns
+import sysconfig
 
 dist_path = "../dist"
 
 try: 
 
-    print("Copy dependencies")
+    path = sysconfig.get_paths()["purelib"]
 
-    copytree(
-        './seedenv/lib/python3.11/site-packages', 
+    print("Copy dependencies from ", path)
+
+    shutil.copytree(
+        path,
         dist_path, 
         symlinks=True, 
-        ignore=ignore_patterns("pip", 'pkg_resources', 'setuptools', '_distutils_hack', 'distutils-precedence.pth',
+        ignore=shutil.ignore_patterns("pip", 'pkg_resources', 'setuptools', '_distutils_hack', 'distutils-precedence.pth',
                                '*.dist-info'))
     
-    print("Copy all src")
+    print("Copy src directory")
 
-    copytree('./src', dist_path + "/src", symlinks=True)
+    shutil.copytree('./src', dist_path + "/src", symlinks=True)
 
     print("Copy index.py file")
 
-    shutil.copyfile("./index.py", dist_path + "/index.py")
-
-    # Installed Python dependencies must be included inside the packed zipped plugin.
-    # All the dependencies need to be installed localy in the "./package" folder so the script could pack them properly.
-    # if os.path.exists('../package'):
-    #     copy_tree('../package', dist_path)  
+    shutil.copyfile("./index.py", dist_path + "/index.py") 
 
     print("Zip")
 
-    shutil.make_archive("plugin", 'zip', dist_path)
+    shutil.make_archive("plugin", "zip", dist_path)
 
     shutil.rmtree(dist_path)
 
