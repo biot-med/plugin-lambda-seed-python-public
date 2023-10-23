@@ -87,12 +87,10 @@ Unused steps and functions can be removed as well.
 
 ### Constants
 
-For running locally you can use local_dev_constants in constants file.
-Just make sure to fill the variables according to the lambda's variables IN THE DEV ENVIRONMENT
+For running locally you can use local_dev_constants in the constants file.
+Just make sure to fill the variables according to the lambda's variables **in the dev environment**
 
-## Basic code flow
-
-**Supported hooks**
+## Supported hooks
 
 - Notifications - notification services
   - hooktype name: `NOTIFICATION`
@@ -102,11 +100,12 @@ Just make sure to fill the variables according to the lambda's variables IN THE 
   - hooktype name: `INTERCEPTOR_POST`
 - Interceptors for Adapt entity (which are also post-requests)
   - hooktype name: `INTERCEPTOR_POST_ENTITY`
-- Other general lambdas not mentioned above
+- Other general lambda types not mentioned above
   - ( hooktype not required but in the code accessed using `NONSPECIFIC` )
 
+## Basic code flow
 
-**This is the lambdas basic flow (see the lambdas root index.js file):**
+**This is the lambda's basic flow (see the root index.js file):**
 
 1. These basic functions run at the beginning of the lambda (you can change them as required):
 
