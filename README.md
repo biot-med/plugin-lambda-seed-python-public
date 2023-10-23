@@ -6,17 +6,18 @@ _This is a basic template for lambda to be used as a starting point for AWS lamb
 
 [Read here](https://docs.biot-med.com/docs/biot-plugins) about BioT plugins. 
 
-This seed works with different triggers (hooks), each hook has it's own functions to be used according to the data received from the hook and, accordingly, the data structure that needs to be returned from the lambda. The lambda first determines what hook is used and retrieves the relevant functions (using a mapper).
+This seed works with different triggers (i.e hook type - either notification or interceptors).
+Each hooktype has to be managed in a specific way and has different functions accordingly (both to manage the event and for the return value).
+The lambda first determines what hook is used and retrieves the relevant functions (using a mapper).
+For the lambda to work as is, the hooktype property must be specified in the header sent in the event (except for non-specific lambdas).
 
-For the lambda to work as is, the hooktype property must be specified in the header sent in the event (except for non-specific lambdas, which the lambda defaults to if the hooktype is not specified).
+## Setup
 
-## Setups
-
-in command line (use python/python3 depends on the installation)
+First we create the virtual environment - Run in command line (use python/python3 depends on the installation)
 ```
 python3 -m venv seedenv
 ```
-run (on Mac)
+then activate (on Mac)
 ```
 source seedenv/bin/activate
 ```
@@ -24,19 +25,43 @@ source seedenv/bin/activate
 ```
 ./seedenv/bin/activate
 ```
-then run (while the virtual machine is activated)
+then run (while the virtual machine is activated) to install all the relevant dependencies 
 ```
 pip install -r requirements.txt 
 ```
 
-** If you add a new dependency while working, make sure to add the dependency to the requirements.txt file by running  
+**IMPORTANT** If you add a new dependency while working (pip install), make sure to add the dependency to the requirements.txt file by running  
 ```
 pip freeze > requirements.txt 
 ```
-
 ### Start working
 
-_Read the comments and TODOs specified in the code to further understand the functions and flow._
+#### Hello world - hooktype Notification example
+
+after setting up 
+
+Go To [src/notification/perform.py](./src/notification/perform.py) 
+
+Add this code in the designated place 
+```
+    logger.info("Hello World")
+```
+
+Pack the code
+```
+python3 scripts/pack.py
+```
+A plugin.zip file was created. 
+
+Upload the the plugin as with notification subscription to any action for any entity as explained [here](https://docs.biot-med.com/docs/custom-lambda-deployment#plugin-api-call)
+
+Now go and perform the action you subscribed to 
+
+In plugin configurations page (Console app) - preview - you have a link to the aws console. open in and go to monitoring -> View CloudWatch logs 
+
+In the log you can see the lambda ran and you can see the "Hello world" record 
+
+_You can read the comments and TODOs specified in the code to further understand the functions and flow._
 ### Pack
 
 Use the pack in scripts folder to zip all required files to upload to the lambda
@@ -44,35 +69,30 @@ Run:
 ```
 python3 scripts/pack.py
 ```
-
-### Cleaning up unwanted code
-
-If you are using the lambda seed for just one type of hook, you can remove all folders not relevant for the usage and delete the `check_request_type` and the `functions_mapper` lines, then import the functions normally (with import) directly from the remaining folder. For instance, for interceptorPre, use:
-
-`from src.interceptor_pre.index import authenticate, login, extractDataFromEvent, perform, createErrorResponse`
-
-Unused steps and functions can be removed too.
-
-### Constants
-
-For running locally you can use the dev constants (in constants file), Just make sure the functions using those variables are changed accordingly.
-
-### Interceptors - Note
-
-You can read about the interceptors' api calls here:
-https://softimize.atlassian.net/wiki/spaces/WIKI/pages/3013247000/Interceptor+Plugin
-
-
 ### Maintenance Notes
 1. The pack script has some assumptions:
   - The handler function is in the index.py (its zipped specifically) 
-  - The venv directory is called seedenv (seedenv/lib/python3.11/site-packages is zipped specifically)
   - Some dependencies directories are NOT zipped - 
     - "pip", 'pkg_resources', 'setuptools', '_distutils_hack', 'distutils-precedence.pth' that are added automatically when creating the venv
     - all folders with '.dist-info' suffix
 2. Whenever a change is being made, make sure to update the version in the \_\_version\_\_.py file
 
-**The supported hooks are:**
+### Cleaning up unwanted code
+
+If you are using the lambda seed for just one hook type, you can remove all folders not relevant for the usage and delete the `check_request_type` and the `functions_mapper` lines, then import the functions normally (with import) directly from the remaining folder. For instance, for interceptorPre, use:
+
+`from src.interceptor_pre.index import authenticate, login, extractDataFromEvent, perform, createErrorResponse`
+
+Unused steps and functions can be removed as well.
+
+### Constants
+
+For running locally you can use local_dev_constants in constants file.
+Just make sure to fill the variables according to the lambda's variables IN THE DEV ENVIRONMENT
+
+## Basic code flow
+
+**Supported hooks**
 
 - Notifications - notification services
   - hooktype name: `NOTIFICATION`
@@ -85,7 +105,6 @@ https://softimize.atlassian.net/wiki/spaces/WIKI/pages/3013247000/Interceptor+Pl
 - Other general lambdas not mentioned above
   - ( hooktype not required but in the code accessed using `NONSPECIFIC` )
 
-## Basic code flow
 
 **This is the lambdas basic flow (see the lambdas root index.js file):**
 
