@@ -47,21 +47,21 @@ Add this code in the designated place
     logger.info("Hello World")
 ```
 
-Pack the code
+run to create plugin.zip file
 ```
 python3 scripts/pack.py
 ```
-A plugin.zip file was created. 
 
-Upload the the plugin as with notification subscription to any action for any entity as explained [here](https://docs.biot-med.com/docs/custom-lambda-deployment#plugin-api-call)
+Upload the the plugin.zip as with notification subscription to any action for any entity as explained [here](https://docs.biot-med.com/docs/custom-lambda-deployment#plugin-api-call)
 
 Now go and perform the action you subscribed to 
 
-In plugin configurations page (Console app) - preview - you have a link to the aws console. open in and go to monitoring -> View CloudWatch logs 
+In plugin configurations page (Console app) - preview - you have a link to the aws console. open it and go to monitoring (tab) -> View CloudWatch logs (button)
 
-In the log you can see the lambda ran and you can see the "Hello world" record 
+In the logs you can see the lambda ran and specifically the "Hello world" record 
 
 _You can read the comments and TODOs specified in the code to further understand the functions and flow._
+
 ### Pack
 
 Use the pack in scripts folder to zip all required files to upload to the lambda
