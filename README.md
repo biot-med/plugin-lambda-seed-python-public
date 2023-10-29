@@ -62,13 +62,6 @@ In the logs you can see the lambda ran and specifically the "Hello world" record
 
 _You can read the comments and TODOs specified in the code to further understand the functions and flow._
 
-### Pack
-
-Use the pack in scripts folder to zip all required files to upload to the lambda
-Run: 
-```
-python3 scripts/pack.py
-```
 ### Maintenance Notes
 1. The pack script has some assumptions:
   - The handler function is in the index.py (its zipped specifically) 
