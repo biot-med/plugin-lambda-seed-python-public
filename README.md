@@ -13,7 +13,7 @@ For the lambda to work as is, the hooktype property must be specified in the hea
 
 ## Setup
 
-First we create the virtual environment - Run in command line (use python/python3 depends on the installation)
+First we create the virtual environment - Run in command line (use *python/python3* depends on the installation)
 ```
 python3 -m venv seedenv
 ```
@@ -23,7 +23,7 @@ source seedenv/bin/activate
 ```
 (windows)
 ```
-./seedenv/bin/activate
+./seedenv/Scripts/activate
 ```
 then run (while the virtual machine is activated) to install all the relevant dependencies 
 ```
