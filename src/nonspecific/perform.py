@@ -1,6 +1,7 @@
 from src.utils.configure_logger import logger
 from src.utils.generic_success_response import generic_success_response
 
+
 def perform(data, token, traceparent, metadata):
     # -----------------------------------------------------------------------------------------
 
@@ -9,7 +10,7 @@ def perform(data, token, traceparent, metadata):
 
     logger.info("In nonspecific lambda, some action was performed!")
 
-    # Return your response here (replace genericSuccessResponse with your response)
+    # Return your response here (replace genericSuccessResponse with your response). can also call for generic_success_response_with_body
     return generic_success_response(traceparent)
 
     # -----------------------------------------------------------------------------------------

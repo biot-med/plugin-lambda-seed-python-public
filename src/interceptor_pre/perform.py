@@ -1,5 +1,6 @@
 from src.utils.call_to_api_example import call_api_example
 from src.utils.configure_logger import logger
+from src.interceptor_pre.create_pre_intercept_success_response import create_pre_intercept_success_response
 
 
 def perform(data, token, traceparent, metadata):
@@ -28,4 +29,4 @@ def perform(data, token, traceparent, metadata):
 
     # -----------------------------------------------------------------------------------------
 
-    return changed_data["body"]
+    return create_pre_intercept_success_response(data)
