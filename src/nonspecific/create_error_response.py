@@ -60,7 +60,7 @@ def internal_server_error(error, traceparent, trace_id):
     return build_response_error(
         status_code=500,
         code="SERVER ERROR",
-        message="internal server error",
+        message=f"internal server error - {error}",
         trace_id=trace_id,
         traceparent=traceparent
     )

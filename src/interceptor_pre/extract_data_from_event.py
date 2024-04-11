@@ -1,12 +1,13 @@
 import json
 from src.constants import NO_EVENT_ERROR, NO_DATA_ERROR, JWT_ERROR, TRACEPARENT_KEY
 
+
 def extract_data_from_event(event): 
     if event is None:
         raise Exception(NO_EVENT_ERROR)
     event_headers = event["headers"]
-    parsed_event_body = json.loads(event["body"])
-    
+    parsed_event_body = json.loads(event["body"].replace("\\\\", "\\"))
+
     event_with_parsed_data = event
     event_with_parsed_data["body"] = parsed_event_body
 
