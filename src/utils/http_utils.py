@@ -17,7 +17,7 @@ def create_headers(traceparent, token=None, additional_header_dict=None):
     return headers
 
 
-def post(url, traceparent, token=None, body=None, query_params=None, headers=None):
+def post(url, traceparent, token=None, body=None, query_params=None, headers=None) -> dict:
     """ This method simplifies post request APIs.
         Any API call that does not respond with a 2XX success code will throw in an exception.
         It will add the default headers, token and traceparent to the request headers.
@@ -36,7 +36,7 @@ def post(url, traceparent, token=None, body=None, query_params=None, headers=Non
     return _request('POST', url, traceparent, token, body, query_params, headers)
 
 
-def get(url, traceparent, token=None, body=None, query_params=None, headers=None):
+def get(url, traceparent, token=None, body=None, query_params=None, headers=None) -> dict:
     """ This method simplifies get request APIs.
         Any API call that does not respond with a 2XX success code will throw in an exception.
         It will add the default headers, token and traceparent to the request headers.
@@ -93,7 +93,7 @@ def head(url, traceparent, token=None, body=None, query_params=None, headers=Non
     return _request('HEAD', url, traceparent, token, body, query_params, headers)
 
 
-def put(url, traceparent, token=None, body=None, query_params=None, headers=None):
+def put(url, traceparent, token=None, body=None, query_params=None, headers=None) -> dict:
     """ This method simplifies put request APIs.
         Any API call that does not respond with a 2XX success code will throw in an exception.
         It will add the default headers, token and traceparent to the request headers.
@@ -112,7 +112,7 @@ def put(url, traceparent, token=None, body=None, query_params=None, headers=None
     return _request('PUT', url, traceparent, token, body, query_params, headers)
 
 
-def patch(url, traceparent, token=None, body=None, query_params=None, headers=None):
+def patch(url, traceparent, token=None, body=None, query_params=None, headers=None) -> dict:
     """ This method simplifies patch request APIs.
         Any API call that does not respond with a 2XX success code will throw in an exception.
         It will add the default headers, token and traceparent to the request headers.

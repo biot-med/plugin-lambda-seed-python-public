@@ -1,3 +1,11 @@
+# Version 1.4.0
+**Released by**: Arye Varman **Release Date**: 2024-04-11
+## Changes
+- Fixed issues with the seed
+- Added Access Denied error to pre intercept
+- Added examples for several api calls
+- Added mock events
+
 # Version 1.3.0
 **Released by**: Adi Siman Tov **Release Date**: 2023-10-16
 ## Changes
