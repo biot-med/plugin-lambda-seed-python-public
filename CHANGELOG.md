@@ -1,3 +1,11 @@
+# Version 1.5.0
+**Released by**: Shimi Karaso **Release Date**: 2024-05-02
+## Changes
+- Added dokcer image support. More details in the readme file
+- Changed the way we are recognizing what constants to use (cloud_constants/local_dev_constants)
+by depending on the AWS_REGION env var instead of the previous one in order support
+local run for plugins of type image as a container
+
 # Version 1.4.0
 **Released by**: Arye Varman **Release Date**: 2024-04-11
 ## Changes

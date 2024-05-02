@@ -61,7 +61,7 @@ default_headers = {
     "Content-Type": "application/json; charset=utf-8",
 }
 
-environment_constants = cloud_constants if os.getenv("AWS_EXECUTION_ENV") is not None else local_dev_constants
+environment_constants = cloud_constants if os.getenv("AWS_REGION") is not None else local_dev_constants
 
 JWT_PERMISSION = environment_constants["JWT_PERMISSION"]
 BIOT_APP_NAME = environment_constants["BIOT_APP_NAME"]
