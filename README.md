@@ -47,7 +47,7 @@ Add this code in the designated place
     logger.info("Hello World")
 ```
 
-run to create plugin.zip file
+run to create plugin.zip file (the pack script and the zip file parts are only relevant for non docker IMAGE plugins, for using the IMAGE deployment package type, scroll down for the docker section)
 ```
 python3 scripts/pack.py
 ```
@@ -142,3 +142,53 @@ Just make sure to fill the variables according to the lambda's variables **in th
 - `BIOT_SERVICE_USER_SECRET_KEY` - the lambdas service users secret key
 
 - `BIOT_SHOULD_VALIDATE_JWT` - This should be false if the service does not
+
+## Deploy Plugin As Docker Image
+In addition to the ZIP deployment package type, the Plugin API also supports deploying the lambda
+as a docker image (i.e. the IMAGE deployment package type). 
+
+### Prerequisites
+- AWS CLI v2 installed https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+- Docker installed https://docs.docker.com/get-docker/
+
+### Assumptions
+- a docker file named "Dockerfile" is present in the project root directory
+
+### Deploy Process
+After finishing developing the plugin, and before we are calling the create plugin API,
+we should build and push the docker image to our aws account docker repository, but first we must
+gain the appropriate credentials.
+
+#### Steps
+1. Call the /settings/v2/plugins/docker-repository/temp-credentials API and keep the response JSON
+2. Open the terminal from the project root directory
+3. Call the .\scripts\docker\windows\login.bat script (or the linux script login.sh) and provide
+the requested parameters asked by the script. After a successful execution, you will have the appropriate permissions
+for pushing new images to the docker repository for 12 hours
+4. Call the .\scripts\docker\windows\buildAndPush.bat script and provide
+the requested parameters asked by the script. After a successful execution, the script will display a unique
+image tag that you should use for the next step
+5. Call the Plugin API (https://docs.biot-med.com/docs/custom-lambda-deployment#plugin-api-call) and provide the
+imageTag parameter (you must enter the above url for more explanations). After being attached to the plugin, the image will
+be managed by the server, also the imageTag  has no meanings after a successful call and will not be returned as part of
+the response
+
+### Local Run Before Deploy
+There are 2 options to test your image plugin locally before deploying it
+1. Same method as we use for running a ZIP plugin (a plugin with a deployment package type ZIP), i.e. executing
+the local_runner.py script
+2. Running as a docker container (the preferred way, but takes a few more steps to execute).
+   - Call the .\scripts\docker\windows\build.bat script (or the linux script build.sh), and keep the fullImageName
+   displayed by the script result in order to later use it in the deploy.bat script (last step)
+   - Call the .\scripts\docker\windows\run.bat script, it will ask for full image name,
+   but you can just leave it empty and press enter since by default it will use the latest image that was built by the
+   build.bat script
+   - Your container is running, and listening to the standard output stream
+   - use a rest client (or curl command) and call the endpoint http://localhost:9000/2015-03-31/functions/function/invocations
+   with method POST, and provide the relevant event payload (some examples are in the mock_event.py script)
+   - After your plugin has been successfully tested, you can stop listening to the standard output stream
+   by pressing ctrl C and Y (for windows). And call the .\scripts\docker\windows\destroy.bat script
+   in order to stop and remove the active container from your docker,
+   - Now, in order to deploy it, first make sure you already ran the login steps for today (less than
+   12 hours) described in the Deploy Process -> Steps 1 & 2 & 3, and then call the
+   .\scripts\docker\windows\push.bat script and provide the requested parameters asked by the script
