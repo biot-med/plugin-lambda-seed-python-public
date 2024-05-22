@@ -1,5 +1,7 @@
 import os
 
+import __version__
+
 API_CALL_ERROR = "CALL_TO_API_FAILED"
 JWT_ERROR = "JWT_ERROR"
 NO_EVENT_ERROR = "NO_EVENT"
@@ -55,7 +57,7 @@ local_dev_constants = {
 }
 
 default_headers = {
-    "User-Agent": "PythonPlugin/1.0.0",
+    "User-Agent": "PythonPlugin/" + __version__,
     "Host": "lambda.aws.com",
     "Accept": "application/json",
     "Content-Type": "application/json; charset=utf-8",
