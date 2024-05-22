@@ -1,3 +1,8 @@
+# Version 1.5.1
+**Released by**: Dan Tamam **Release Date**: 2024-05-22
+## Changes
+- Fixed response body returned to the service in post and post entity interception modules
+
 # Version 1.5.0
 **Released by**: Shimi Karaso **Release Date**: 2024-05-02
 ## Changes
@@ -20,6 +25,7 @@ local run for plugins of type image as a container
 - Changed seed structure - now using venv and requirements.txt file.
 - Changed pack script to use dependencies from the venv directory
 - **NOTE** .gitignore and pack script expects the venv name to be "seedenv"
+- 
 # Version 1.2.1
 **Released by**: Dan Tamam **Release Date**: 2023-09-10
 ## Changes
