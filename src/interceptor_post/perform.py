@@ -28,4 +28,4 @@ def perform(data, token, traceparent, metadata):
 
     # ----------------------------------------------------------------------------------
 
-    return changed_data["body"]["response"]
+    return {"response": changed_data["body"]["response"]}
