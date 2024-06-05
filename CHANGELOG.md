@@ -1,3 +1,8 @@
+# Version 1.5.2
+**Released by**: Dan Tamam **Release Date**: 2024-06-05
+## Changes
+- Fixed imports
+
 # Version 1.5.1
 **Released by**: Dan Tamam **Release Date**: 2024-05-22
 ## Changes
