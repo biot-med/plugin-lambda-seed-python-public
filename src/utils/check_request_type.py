@@ -15,8 +15,11 @@ def check_request_type (event):
     Returns:
         string: The request type.
     """
-    hooktype_key = list(filter(lambda k: k.lower() == "hooktype", list(event["headers"].keys())))
-    hooktype_key = hooktype_key[0] if len(hooktype_key) > 0 else None
+    if event.get("headers"):
+        hooktype_key = list(filter(lambda k: k.lower() == "hooktype", list(event["headers"].keys())))
+        hooktype_key = hooktype_key[0] if len(hooktype_key) > 0 else None
+    else:
+        hooktype_key = None
   
     if hooktype_key is not None and event["headers"][hooktype_key] in request_types:
         return request_types[event["headers"][hooktype_key]]

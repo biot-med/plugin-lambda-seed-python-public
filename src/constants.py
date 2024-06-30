@@ -39,9 +39,9 @@ cloud_constants = {
 
 local_dev_constants = {
     "BIOT_APP_NAME": "BioT Lambda seed",
-    "BIOT_BASE_URL": None,
-    "BIOT_SERVICE_USER_ID": None,
-    "BIOT_SERVICE_USER_SECRET_KEY": None,
+    "BIOT_BASE_URL": "https://api.dev.biot-gen2.biot-med.com:443",
+    "BIOT_SERVICE_USER_ID": "3839d2a6-7191-49a5-8b4e-02e0a84af01c",
+    "BIOT_SERVICE_USER_SECRET_KEY": "uHxeooZrFehXSjTf7KI0pTZVi815RECs",
     "AWS_EXECUTION_ENV": "DEV",
     "BIOT_SHOULD_VALIDATE_JWT": None,
     "BIOT_SERVICE_ENVIRONMENT": "int",
@@ -55,7 +55,7 @@ local_dev_constants = {
 }
 
 default_headers = {
-    "User-Agent": "PythonPlugin/1.5.2",
+    "User-Agent": "PythonPlugin/1.5.3",
     "Host": "lambda.aws.com",
     "Accept": "application/json",
     "Content-Type": "application/json; charset=utf-8",

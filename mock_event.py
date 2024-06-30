@@ -126,3 +126,15 @@ nonspecific_mock_event = {
     'body': '{\\n    \"name\": \"john\",\\n    \"surname\": \"smith\",\\n    \"email\": \"john@biotmail.com\"\\n}\\n',
     'isBase64Encoded': False
 }
+
+scheduler_event = {
+    'version': '0',
+    'id': '5f222995-8a9e-5ed2-db68-90363ed83146',
+    'detail-type': 'Scheduled Event',
+    'source': 'aws.events',
+    'account': '590183797097',
+    'time': '2024-06-03T12:20:09Z',
+    'region': 'eu-central-1',
+    'resources': ['arn:aws:events:eu-central-1:590183797097:rule/Plugin-Cardioflex-Sync-Schedule'],
+    'detail': {}
+}
