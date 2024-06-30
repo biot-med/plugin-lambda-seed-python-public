@@ -39,9 +39,9 @@ cloud_constants = {
 
 local_dev_constants = {
     "BIOT_APP_NAME": "BioT Lambda seed",
-    "BIOT_BASE_URL": "https://api.dev.biot-gen2.biot-med.com:443",
-    "BIOT_SERVICE_USER_ID": "3839d2a6-7191-49a5-8b4e-02e0a84af01c",
-    "BIOT_SERVICE_USER_SECRET_KEY": "uHxeooZrFehXSjTf7KI0pTZVi815RECs",
+    "BIOT_BASE_URL": None,
+    "BIOT_SERVICE_USER_ID": None,
+    "BIOT_SERVICE_USER_SECRET_KEY": None,
     "AWS_EXECUTION_ENV": "DEV",
     "BIOT_SHOULD_VALIDATE_JWT": None,
     "BIOT_SERVICE_ENVIRONMENT": "int",
