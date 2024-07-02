@@ -55,7 +55,7 @@ local_dev_constants = {
 }
 
 default_headers = {
-    "User-Agent": "PythonPlugin/1.5.2",
+    "User-Agent": "PythonPlugin/1.5.3",
     "Host": "lambda.aws.com",
     "Accept": "application/json",
     "Content-Type": "application/json; charset=utf-8",

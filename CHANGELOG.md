@@ -1,3 +1,8 @@
+# Version 1.5.3
+**Released by**: Chen Zecharya **Release Date**: 2024-06-30
+## Changes
+- Plugin is now safe to be used through scheduler
+
 # Version 1.5.2
 **Released by**: Dan Tamam **Release Date**: 2024-06-05
 ## Changes
