@@ -1,3 +1,9 @@
+# Version 1.5.4
+**Released by**: Chen Zecharya **Release Date**: 2024-07-03
+## Changes
+- Removed case specific code from 'perform' method in all interceptors
+- Updated comments on how to create new custom errors
+
 # Version 1.5.3
 **Released by**: Chen Zecharya **Release Date**: 2024-06-30
 ## Changes

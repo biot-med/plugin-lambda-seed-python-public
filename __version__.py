@@ -1,2 +1,2 @@
-__version__ = '1.5.3'
+__version__ = '1.5.4'
 # when changing version also change in user agent header in default_headers in constants.py
