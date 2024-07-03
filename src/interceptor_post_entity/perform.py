@@ -3,7 +3,6 @@ from src.utils.configure_logger import logger
 from src.utils.generic_success_response import generic_success_response
 
 
-
 def perform(data, token, traceparent, metadata):
     # -----------------------------------------------------------------------------------------
 
@@ -19,5 +18,7 @@ def perform(data, token, traceparent, metadata):
 
     logger.info("In post entity lambda, got callExampleResponse ", call_example_response)
 
+    changed_data = data  # change the data according to your logic
+
     # -----------------------------------------------------------------------------------------
-    return {"response": call_example_response["body"]["response"]}
+    return {"response": changed_data["body"]["response"]}
