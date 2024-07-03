@@ -20,4 +20,4 @@ def perform(data, token, traceparent, metadata):
     logger.info("In post entity lambda, got callExampleResponse ", call_example_response)
 
     # -----------------------------------------------------------------------------------------
-    return generic_success_response(traceparent)
+    return {"response": call_example_response["body"]["response"]}
