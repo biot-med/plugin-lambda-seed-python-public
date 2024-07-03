@@ -1,6 +1,6 @@
 from src.utils.call_to_api_example import call_api_example
 from src.utils.configure_logger import logger
-from src.utils.generic_success_response import generic_success_response
+from src.interceptor_pre.create_pre_intercept_success_response import create_pre_intercept_success_response
 
 
 def perform(data, token, traceparent, metadata):
@@ -19,4 +19,5 @@ def perform(data, token, traceparent, metadata):
     logger.info("In pre interceptor lambda, got callExampleResponse ", call_example_response)
 
     # -----------------------------------------------------------------------------------------
-    return generic_success_response(traceparent)
+    return create_pre_intercept_success_response(data)
+
