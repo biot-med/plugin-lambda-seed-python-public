@@ -65,4 +65,9 @@ def handler(event, lambda_context=None):
     except Exception as e:
         # This should return the proper error responses by the type of error that occurred
         # See the createErrorResponse function for your specific lambda usage
+
+        # To throw a new custom error
+        # 1. Add the error code name to constants.py
+        # 2. Add the error response in create_error_response
+        # 3. Use raise Exception(ERROR_CODE_NAME)
         return create_error_response(e, traceparent)

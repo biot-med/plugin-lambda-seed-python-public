@@ -1,4 +1,4 @@
-mock_event = {
+notification_mock_event = {
     'version': '2.0',
     'routeKey': '$default',
     'rawPath': '/',
@@ -25,11 +25,11 @@ mock_event = {
         'domainName': 'rnis3tgocg35xey4msdsbngbta0qfigj.lambda-url.us-east-1.on.aws',
         'domainPrefix': 'rnis3tgocg35xey4msdsbngbta0qfigj',
         'http': {
-        'method': 'POST',
-        'path': '/',
-        'protocol': 'HTTP/1.1',
-        'sourceIp': '44.194.185.170',
-        'userAgent': 'Apache-HttpClient/5.1.4 (Java/17.0.6)'
+            'method': 'POST',
+            'path': '/',
+            'protocol': 'HTTP/1.1',
+            'sourceIp': '44.194.185.170',
+            'userAgent': 'Apache-HttpClient/5.1.4 (Java/17.0.6)'
         },
         'requestId': 'd3679ee8-e44d-4de4-9f3f-807a6afa936b',
         'routeKey': '$default',
@@ -41,52 +41,50 @@ mock_event = {
     'isBase64Encoded': False
 }
 
-
 pre_intercept_mock_event = {
-  "version": "2.0",
-  "routeKey": "$default",
-  "rawPath": "/",
-  "rawQueryString": "",
-  "headers": {
-    "content-length": "7875",
-    "x-amzn-tls-version": "TLSv1.3",
-    "x-forwarded-proto": "https",
-    "accept-language": "en-us",
-    "x-forwarded-port": "443",
-    "x-forwarded-for": "18.214.61.164",
-    "accept": "application/json, application/octet-stream, application/cbor, application/*+json",
-    "hooktype": "INTERCEPTOR_PRE",
-    "authorization": "Bearer eyJhbGciOiJSUzUxMiJ9.eyJzZXJ2aWNlVXNlcklkIjoiNjc4NmQ2MGQtZTIzYi00ZDFiLTk2OWMtNzFhMTkzYWMxODVjIiwic2NvcGVzIjpbIlNFVFRJTkdTX01JTklNSVpFRF9TRUFSQ0hfVEVNUExBVEUiLCJVTVNfVVNFUlNfVVBEQVRFX1VTRVIiLCJNRUFTVVJFTUVOVF9HRVRfTEFTVF9NRUFTVVJFTUVOVFMiLCJGSUxFX1NFQVJDSF9GSUxFUyIsIlNFVFRJTkdTX1NFQVJDSF9BVFRSSUJVVEUiLCJGSUxFX0dFVF9GSUxFX01FVEFEQVRBIiwiU0VUVElOR1NfU0VBUkNIX0VOVElUWV9UWVBFUyIsIlBST1RFQ1RFRF9BUEkiLCJVTVNfVVNFUlNfU0VBUkNIX1VTRVIiLCJFTlRJVFlfUkVMQVRJT05TSElQX1NFQVJDSCIsIlNFVFRJTkdTX0dFVF9SRUZFUkVOQ0VfQVRUUklCVVRFUyIsIlNFVFRJTkdTX0dFVF9URU1QTEFURSIsIkVOVElUWV9SRUxBVElPTlNISVBfQVRUUklCVVRFX1JFRkVSRU5DRVNfQ09VTlQiLCJFTlRJVFlfRU5USVRZX1NFQVJDSCIsIlVNU19VU0VSU19DUkVBVEVfVVNFUiIsIlVNU19VU0VSU19ERUxFVEVfVVNFUiIsIlBMVUdJTl9JTlRFUkNFUFRPUiIsIlNFVFRJTkdTX0dFVF9DVVNUT01fQVRUUklCVVRFUyIsIlNFVFRJTkdTX1NFQVJDSF9URU1QTEFURSIsIlBFUk1JU1NJT05TX1NZTkNfUEVSTUlTU0lPTlMiXSwidG9rZW5UeXBlIjoiU0VSVklDRV9JTlRFUk5BTCIsImp0aSI6IjQzY2QyNDg4LTgyZTItNDUwMi04MTQzLTU5YTg5ODAyZDNiZSIsImV4cCI6MTcxMTAyODEwOX0.TWMpYFC99U15OkcsTP59Wb_c902sU30DXY-HNI0t-iqbiCc2zKJoS-iN_yyYYXbdRKN1uCwHzF2JsOCeXRLEcARp0WEHR4C8Ct7qk80YdalW_9wTTzvbNTvvcx9n4qJK31ne61m7KKGOBRFv3apWNhmBNtDWJGeJSgYnS1wJRYUUEpblopRVw11arsm5TGci21K08PsgwENEoDxxCV-MKsLQjRPu5RXAqPXQTOOafcwLBMpNwvzf2eIqN8udrHuqgqbEUs_WZ9Frnkrh2Y5hqvP6Ewj4nFSf03PYDQpt0STIiq7T5zsWdOUEltmhFhXL5DmlAfwZB_YYU3zcFkEJrA",
-    "x-amzn-tls-cipher-suite": "TLS_AES_128_GCM_SHA256",
-    "x-amzn-trace-id": "Self=1-65fc35a0-0002ccbd3f9ccdb570eeddd4;Root=1-65fc35a0-192b8c084f3381e84745ef37",
-    "traceparent": "00-65fc35a05ce4c540b5e1cd1616f6fa21-89b65f9147e74718-00",
-    "host": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz.cell-1-lambda-url.us-east-1.on.aws",
-    "content-type": "application/json",
-    "accept-encoding": "gzip, x-gzip, deflate",
-    "user-agent": "Apache-HttpClient/5.1.4 (Java/17.0.6)"
-  },
-  "requestContext": {
-    "accountId": "anonymous",
-    "apiId": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz",
-    "domainName": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz.cell-1-lambda-url.us-east-1.on.aws",
-    "domainPrefix": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz",
-    "http": {
-      "method": "POST",
-      "path": "/",
-      "protocol": "HTTP/1.1",
-      "sourceIp": "18.214.61.164",
-      "userAgent": "Apache-HttpClient/5.1.4 (Java/17.0.6)"
-    },
-    "requestId": "27faf494-5201-49b0-a933-46d51c90146f",
+    "version": "2.0",
     "routeKey": "$default",
-    "stage": "$default",
-    "time": "21/Mar/2024:13:26:56 +0000",
-    "timeEpoch": 1711027616696
-  },
-  "body": "{\"initiatorData\":{\"subjectId\":\"3e256d8d-e5e2-42bf-a091-1e6b4afef2fb\",\"ownerOrganizationId\":\"00000000-0000-0000-0000-000000000000\",\"tokenType\":\"USER\"},\"method\":\"GET\",\"entityName\":\"caregiver\",\"apiId\":\"GET/organization/v1/users/caregivers\",\"request\":{\"body\":null,\"path\":\"/organization/v1/users/caregivers\",\"queryParameters\":{\"searchRequest\":[\"{\\\"limit\\\":30,\\\"filter\\\":{\\\"_ownerOrganization.id\\\":{\\\"in\\\":[\\\"00000000-0000-0000-0000-000000000000\\\"],\\\"notIn\\\":[],\\\"filter\\\":{}}},\\\"freeTextSearch\\\":\\\"\\\"}\"]},\"headers\":{\"sec-fetch-mode\":\"cors\",\"content-length\":\"0\",\"referer\":\"https://organization.app.dev.biot-gen2.biot-med.com/\",\"sec-fetch-site\":\"same-site\",\"x-forwarded-proto\":\"https\",\"accept-language\":\"en-us\",\"origin\":\"https://organization.app.dev.biot-gen2.biot-med.com\",\"x-forwarded-port\":\"443\",\"x-forwarded-for\":\"147.235.209.7:3824\",\"accept\":\"application/json, text/plain, */*\",\"authorization\":\"Bearer eyJhbGciOiJSUzUxMiJ9.eyJyZWZyZXNoVG9rZW5JZCI6ImIxNmNjMzc0LTQyZTAtNDllNi1hOTE3LTE0OGQxYTFhOWIwOCIsInRlbmFudElkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwic2NvcGVzIjpbIlNFVFRJTkdTX01JTklNSVpFRF9TRUFSQ0hfVEVNUExBVEUiLCJQUk9URUNURURfQVBJIiwiU0VUVElOR1NfUE9SVEFMX0JVSUxERVJfR0VUX1ZJRVdfRlVMTF9BVFRSSUJVVEVTIiwiU0VUVElOR1NfR0VUX1RFTVBMQVRFIiwiVU1TX1VTRVJTX1NFTEZfVVBEQVRFX1VTRVIiLCJVTVNfVVNFUlNfU0VMRl9ERUxFVEVfVVNFUiIsIk9SR0FOSVpBVElPTl9HRVRfQlVJTFRfSU5fVEVNUExBVEVTIiwiVU1TX1VTRVJTX1NFTEZfR0VUX1VTRVIiLCJTRVRUSU5HU19TRUFSQ0hfVEVNUExBVEUiXSwidG9rZW5UeXBlIjoiVVNFUiIsImp0aSI6IjkzNDdkMmY3LWU1MTEtNDllOC04ZmE0LWY1ZDI1NjQzMTUwNiIsInN1YiI6IjNlMjU2ZDhkLWU1ZTItNDJiZi1hMDkxLTFlNmI0YWZlZjJmYiIsImV4cCI6MTcxMjA2MzE4OH0.YhgQosQTUgriyP2uUwcsc8gVP_vTK-6Sg8kVm4GP9evsp1VDJUce55aiP-71XeX3vDN3XUmgCxz8ZCuDmUk1-NxrD2zjXrP1MbnY1q0OoZoVQHGOYQmcy1NMNy_3OHYBZwaO0dN0n34gZ5XyvQ6L1xL-m1SNXi-EEL8TpjKPIqaC54FfSgLjbA8Cfrndh_HBQbRtXcVTAyBZee29d6rNq1z0hfcaoDmStshftYWM9yYK3byPUYeVTyM9RhvB2QLRdlGnmMGOtqG697YxkQUbcART4IR_9jNfKod09sqFvf0ND-qD0DYGFE3AW4kBT5nfwGQvxrcvhI29l76IzUqgfg\",\"sec-ch-ua\":\"\\\"Google Chrome\\\";v=\\\"123\\\", \\\"Not:A-Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"123\\\"\",\"x-amzn-trace-id\":\"Self=1-660bff90-586f219a305944c6255a2835;Root=1-660bff90-004902df7ea2cec35a13be46\",\"sec-ch-ua-mobile\":\"?0\",\"traceparent\":\"00-660bff9042e0ac8a1c378fd7f00d2b8d-2a9647ced4f9fb47-00\",\"sec-ch-ua-platform\":\"\\\"macOS\\\"\",\"host\":\"api.dev.biot-gen2.biot-med.com\",\"accept-encoding\":\"gzip, x-gzip, deflate\",\"user-agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36\",\"sec-fetch-dest\":\"empty\"},\"pathVariables\":[]}}",
-  "isBase64Encoded": False
+    "rawPath": "/",
+    "rawQueryString": "",
+    "headers": {
+        "content-length": "7875",
+        "x-amzn-tls-version": "TLSv1.3",
+        "x-forwarded-proto": "https",
+        "accept-language": "en-us",
+        "x-forwarded-port": "443",
+        "x-forwarded-for": "18.214.61.164",
+        "accept": "application/json, application/octet-stream, application/cbor, application/*+json",
+        "hooktype": "INTERCEPTOR_PRE",
+        "authorization": "Bearer eyJhbGciOiJSUzUxMiJ9.eyJzZXJ2aWNlVXNlcklkIjoiNjc4NmQ2MGQtZTIzYi00ZDFiLTk2OWMtNzFhMTkzYWMxODVjIiwic2NvcGVzIjpbIlNFVFRJTkdTX01JTklNSVpFRF9TRUFSQ0hfVEVNUExBVEUiLCJVTVNfVVNFUlNfVVBEQVRFX1VTRVIiLCJNRUFTVVJFTUVOVF9HRVRfTEFTVF9NRUFTVVJFTUVOVFMiLCJGSUxFX1NFQVJDSF9GSUxFUyIsIlNFVFRJTkdTX1NFQVJDSF9BVFRSSUJVVEUiLCJGSUxFX0dFVF9GSUxFX01FVEFEQVRBIiwiU0VUVElOR1NfU0VBUkNIX0VOVElUWV9UWVBFUyIsIlBST1RFQ1RFRF9BUEkiLCJVTVNfVVNFUlNfU0VBUkNIX1VTRVIiLCJFTlRJVFlfUkVMQVRJT05TSElQX1NFQVJDSCIsIlNFVFRJTkdTX0dFVF9SRUZFUkVOQ0VfQVRUUklCVVRFUyIsIlNFVFRJTkdTX0dFVF9URU1QTEFURSIsIkVOVElUWV9SRUxBVElPTlNISVBfQVRUUklCVVRFX1JFRkVSRU5DRVNfQ09VTlQiLCJFTlRJVFlfRU5USVRZX1NFQVJDSCIsIlVNU19VU0VSU19DUkVBVEVfVVNFUiIsIlVNU19VU0VSU19ERUxFVEVfVVNFUiIsIlBMVUdJTl9JTlRFUkNFUFRPUiIsIlNFVFRJTkdTX0dFVF9DVVNUT01fQVRUUklCVVRFUyIsIlNFVFRJTkdTX1NFQVJDSF9URU1QTEFURSIsIlBFUk1JU1NJT05TX1NZTkNfUEVSTUlTU0lPTlMiXSwidG9rZW5UeXBlIjoiU0VSVklDRV9JTlRFUk5BTCIsImp0aSI6IjQzY2QyNDg4LTgyZTItNDUwMi04MTQzLTU5YTg5ODAyZDNiZSIsImV4cCI6MTcxMTAyODEwOX0.TWMpYFC99U15OkcsTP59Wb_c902sU30DXY-HNI0t-iqbiCc2zKJoS-iN_yyYYXbdRKN1uCwHzF2JsOCeXRLEcARp0WEHR4C8Ct7qk80YdalW_9wTTzvbNTvvcx9n4qJK31ne61m7KKGOBRFv3apWNhmBNtDWJGeJSgYnS1wJRYUUEpblopRVw11arsm5TGci21K08PsgwENEoDxxCV-MKsLQjRPu5RXAqPXQTOOafcwLBMpNwvzf2eIqN8udrHuqgqbEUs_WZ9Frnkrh2Y5hqvP6Ewj4nFSf03PYDQpt0STIiq7T5zsWdOUEltmhFhXL5DmlAfwZB_YYU3zcFkEJrA",
+        "x-amzn-tls-cipher-suite": "TLS_AES_128_GCM_SHA256",
+        "x-amzn-trace-id": "Self=1-65fc35a0-0002ccbd3f9ccdb570eeddd4;Root=1-65fc35a0-192b8c084f3381e84745ef37",
+        "traceparent": "00-65fc35a05ce4c540b5e1cd1616f6fa21-89b65f9147e74718-00",
+        "host": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz.cell-1-lambda-url.us-east-1.on.aws",
+        "content-type": "application/json",
+        "accept-encoding": "gzip, x-gzip, deflate",
+        "user-agent": "Apache-HttpClient/5.1.4 (Java/17.0.6)"
+    },
+    "requestContext": {
+        "accountId": "anonymous",
+        "apiId": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz",
+        "domainName": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz.cell-1-lambda-url.us-east-1.on.aws",
+        "domainPrefix": "v3xsg6ytmzrwxjt57erjegvaoa0ifhwz",
+        "http": {
+            "method": "POST",
+            "path": "/",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "18.214.61.164",
+            "userAgent": "Apache-HttpClient/5.1.4 (Java/17.0.6)"
+        },
+        "requestId": "27faf494-5201-49b0-a933-46d51c90146f",
+        "routeKey": "$default",
+        "stage": "$default",
+        "time": "21/Mar/2024:13:26:56 +0000",
+        "timeEpoch": 1711027616696
+    },
+    "body": "{\"initiatorData\":{\"subjectId\":\"3e256d8d-e5e2-42bf-a091-1e6b4afef2fb\",\"ownerOrganizationId\":\"00000000-0000-0000-0000-000000000000\",\"tokenType\":\"USER\"},\"method\":\"GET\",\"entityName\":\"caregiver\",\"apiId\":\"GET/organization/v1/users/caregivers\",\"request\":{\"body\":null,\"path\":\"/organization/v1/users/caregivers\",\"queryParameters\":{\"searchRequest\":[\"{\\\"limit\\\":30,\\\"filter\\\":{\\\"_ownerOrganization.id\\\":{\\\"in\\\":[\\\"00000000-0000-0000-0000-000000000000\\\"],\\\"notIn\\\":[],\\\"filter\\\":{}}},\\\"freeTextSearch\\\":\\\"\\\"}\"]},\"headers\":{\"sec-fetch-mode\":\"cors\",\"content-length\":\"0\",\"referer\":\"https://organization.app.dev.biot-gen2.biot-med.com/\",\"sec-fetch-site\":\"same-site\",\"x-forwarded-proto\":\"https\",\"accept-language\":\"en-us\",\"origin\":\"https://organization.app.dev.biot-gen2.biot-med.com\",\"x-forwarded-port\":\"443\",\"x-forwarded-for\":\"147.235.209.7:3824\",\"accept\":\"application/json, text/plain, */*\",\"authorization\":\"Bearer eyJhbGciOiJSUzUxMiJ9.eyJyZWZyZXNoVG9rZW5JZCI6ImIxNmNjMzc0LTQyZTAtNDllNi1hOTE3LTE0OGQxYTFhOWIwOCIsInRlbmFudElkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwic2NvcGVzIjpbIlNFVFRJTkdTX01JTklNSVpFRF9TRUFSQ0hfVEVNUExBVEUiLCJQUk9URUNURURfQVBJIiwiU0VUVElOR1NfUE9SVEFMX0JVSUxERVJfR0VUX1ZJRVdfRlVMTF9BVFRSSUJVVEVTIiwiU0VUVElOR1NfR0VUX1RFTVBMQVRFIiwiVU1TX1VTRVJTX1NFTEZfVVBEQVRFX1VTRVIiLCJVTVNfVVNFUlNfU0VMRl9ERUxFVEVfVVNFUiIsIk9SR0FOSVpBVElPTl9HRVRfQlVJTFRfSU5fVEVNUExBVEVTIiwiVU1TX1VTRVJTX1NFTEZfR0VUX1VTRVIiLCJTRVRUSU5HU19TRUFSQ0hfVEVNUExBVEUiXSwidG9rZW5UeXBlIjoiVVNFUiIsImp0aSI6IjkzNDdkMmY3LWU1MTEtNDllOC04ZmE0LWY1ZDI1NjQzMTUwNiIsInN1YiI6IjNlMjU2ZDhkLWU1ZTItNDJiZi1hMDkxLTFlNmI0YWZlZjJmYiIsImV4cCI6MTcxMjA2MzE4OH0.YhgQosQTUgriyP2uUwcsc8gVP_vTK-6Sg8kVm4GP9evsp1VDJUce55aiP-71XeX3vDN3XUmgCxz8ZCuDmUk1-NxrD2zjXrP1MbnY1q0OoZoVQHGOYQmcy1NMNy_3OHYBZwaO0dN0n34gZ5XyvQ6L1xL-m1SNXi-EEL8TpjKPIqaC54FfSgLjbA8Cfrndh_HBQbRtXcVTAyBZee29d6rNq1z0hfcaoDmStshftYWM9yYK3byPUYeVTyM9RhvB2QLRdlGnmMGOtqG697YxkQUbcART4IR_9jNfKod09sqFvf0ND-qD0DYGFE3AW4kBT5nfwGQvxrcvhI29l76IzUqgfg\",\"sec-ch-ua\":\"\\\"Google Chrome\\\";v=\\\"123\\\", \\\"Not:A-Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"123\\\"\",\"x-amzn-trace-id\":\"Self=1-660bff90-586f219a305944c6255a2835;Root=1-660bff90-004902df7ea2cec35a13be46\",\"sec-ch-ua-mobile\":\"?0\",\"traceparent\":\"00-660bff9042e0ac8a1c378fd7f00d2b8d-2a9647ced4f9fb47-00\",\"sec-ch-ua-platform\":\"\\\"macOS\\\"\",\"host\":\"api.dev.biot-gen2.biot-med.com\",\"accept-encoding\":\"gzip, x-gzip, deflate\",\"user-agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36\",\"sec-fetch-dest\":\"empty\"},\"pathVariables\":[]}}",
+    "isBase64Encoded": False
 }
-
 
 nonspecific_mock_event = {
     'version': '2.0',
