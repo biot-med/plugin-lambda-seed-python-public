@@ -10,7 +10,7 @@ def generic_success_response(traceparent):
     }
 
 
-def generic_success_response_with_body(traceparent, body: dict):
+def generic_success_response_with_body(traceparent, body):
     return {
         "statusCode": 200,
         "headers": {
@@ -19,3 +19,12 @@ def generic_success_response_with_body(traceparent, body: dict):
         "body": body
     }
 
+
+def generic_bad_request_response(traceparent, body):
+    return {
+        "statusCode": 400,
+        "headers": {
+            TRACEPARENT_KEY: traceparent,
+        },
+        "body": body
+    }
