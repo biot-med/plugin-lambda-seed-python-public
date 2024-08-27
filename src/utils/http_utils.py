@@ -217,12 +217,18 @@ def _request(method, url, traceparent=None, token=None, body=None, query_params=
         raise Exception(API_CALL_ERROR, {"cause": exception})
 
 
-def log_response(response):
+def log_response(response, response_body_log_override=None):
     if response is None:
         raise Exception("No response returned")
     else:
-        logger.info("Received http response: ", {"status code": response.status_code, "body": response.text,
-                                                 "headers": response.headers})
+        if response_body_log_override is None:
+            logger.info("Received http response: ", {"status code": response.status_code,
+                                                     "body": response.text,
+                                                     "headers": response.headers})
+        else:
+            logger.info("Received http response: ", {"status code": response.status_code,
+                                                     "body": response_body_log_override,
+                                                     "headers": response.headers})
 
     if response.status_code not in range(200, 299):
         raise Exception("Response returned with non 2XX status code: " + response.text)

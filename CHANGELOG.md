@@ -5,6 +5,7 @@
 - All http requests sent with http_utils, will now convert their query dict values to strings
 - Traceparent is now optional in all http_util methods
 - Added log response method to http_utils, this can be used if directly using requests methods for non-json requests
+- Added file apis
 - Add generic bad request response method
 - Change no hooktype provided warning to use logger instead of print
 
