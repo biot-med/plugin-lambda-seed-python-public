@@ -1,3 +1,5 @@
+from src.utils.configure_logger import logger
+
 request_types = {
     "NOTIFICATION": "NOTIFICATION",
     "INTERCEPTOR_PRE": "INTERCEPTOR_PRE",
@@ -23,7 +25,7 @@ def check_request_type (event):
   
     if hooktype_key is not None and event["headers"][hooktype_key] in request_types:
         return request_types[event["headers"][hooktype_key]]
-    else :
-        print("No hooktype provided")
+    else:
+        logger.warn("No hooktype provided, will run as nonspecific")
         return request_types["NONSPECIFIC"]
   

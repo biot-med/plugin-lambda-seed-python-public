@@ -1,3 +1,14 @@
+# Version 1.5.5
+**Released by**: Dan Tamam **Release Date**: 2024-08-27
+## Changes
+- Added biot_search method to http_utils, to simplify sending the standard biot search request
+- All http requests sent with http_utils, will now convert their query dict values to strings
+- Traceparent is now optional in all http_util methods
+- Added log response method to http_utils, this can be used if directly using requests methods for non-json requests
+- Added file apis
+- Add generic bad request response method
+- Change no hooktype provided warning to use logger instead of print
+
 # Version 1.5.4
 **Released by**: Chen Zecharya **Release Date**: 2024-07-03
 ## Changes
