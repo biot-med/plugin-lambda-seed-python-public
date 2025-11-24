@@ -1,3 +1,10 @@
+# Version 1.5.6
+**Released by**: Ben Rosencveig **Release Date**: 2025-11-24
+## Changes
+- Refactored authentication logic to centralized service (src/services/auth/)
+- Removed duplicate authenticate.py files from interceptors
+- Added login service for centralized authentication handling with token caching across Lambda invocations
+
 # Version 1.5.5
 **Released by**: Dan Tamam **Release Date**: 2024-08-27
 ## Changes
