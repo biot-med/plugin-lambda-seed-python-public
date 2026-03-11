@@ -1,4 +1,8 @@
 def AWS_REGION = 'us-east-1'
+def VERSION_EXISTS = false
+def GETVERSION = ''
+def ZIPNAME = ''
+def COMMIT_INFO = ''
 
 pipeline {
     agent { label 'python' }
@@ -40,12 +44,29 @@ pipeline {
                 }
             }
         }
-        stage('upload zip'){
+        stage('Check version in S3'){
             steps {
                 script {
-                    sh """
-                    mkdir -p ~/.aws/
-                    """
+                    sh "mkdir -p ~/.aws/"
+                    withAWS(credentials: 'biot', region: AWS_REGION){
+                        VERSION_EXISTS = sh(returnStatus: true, script: """
+                            aws s3 ls s3://biot-plugin-seed/${ZIPNAME} --region us-east-1
+                        """) == 0
+                    }
+                    if (VERSION_EXISTS) {
+                        currentBuild.result = 'SUCCESS'
+                        echo "Version ${GETVERSION} already exists in S3. Skipping upload and tagging."
+                        return
+                    }
+                }
+            }
+        }
+        stage('upload zip'){
+            when {
+                expression { return !VERSION_EXISTS }
+            }
+            steps {
+                script {
                     withAWS(credentials: 'biot', region: AWS_REGION){
                         sh """
                             mv plugin.zip ${ZIPNAME}
@@ -57,7 +78,10 @@ pipeline {
         }        
         stage('Git Tag'){
             when {
-                branch 'master'
+                allOf {
+                    branch 'master'
+                    expression { return !VERSION_EXISTS }
+                }
             }
             environment {
                 GIT = credentials('github-pat') 
