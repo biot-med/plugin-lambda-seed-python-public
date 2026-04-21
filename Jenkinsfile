@@ -26,8 +26,8 @@ pipeline {
             steps {
                 script {
                     sh """#!/bin/bash
-                       python -V
-                       python scripts/pack.py
+                       python3 -V
+                       python3 scripts/pack.py
                        ls -la
                     """
                     GETVERSION = sh(returnStdout: true, script: """
