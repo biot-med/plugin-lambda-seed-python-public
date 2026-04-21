@@ -26,12 +26,7 @@ pipeline {
             steps {
                 script {
                     sh """#!/bin/bash
-                       apt-get update && apt install -y python3.11-venv --fix-missing
-                       ln -sf /usr/bin/python3 /usr/bin/python
                        python -V
-                       python -m venv seedenv
-                       source seedenv/bin/activate
-                       pip3 install -r requirements.txt
                        python scripts/pack.py
                        ls -la
                     """

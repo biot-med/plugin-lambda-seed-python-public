@@ -1,44 +1,59 @@
-# The script create a zip file to upload as a BioT plugin.
-# Assumptions 
-# 1. The handler function is in the index.py (its zipped specifically)
-# 2. The venv directory is called seedenv (seedenv/lib/python3.11/site-packages is zipped specifically)
-# 3. Some dependencies are NOT zipped - base things like pip
+# Creates a zip file to upload as a BioT plugin.
+# Run from the plugin root: `python scripts/pack.py`.
+#
+# Downloads Linux wheels for the Lambda's Python runtime directly (NOT a local
+# venv), so C-extension packages like cffi/cryptography land as Linux .so files
+# compatible with the Lambda runtime — even when packing from macOS or a host
+# Python version that differs from the Lambda's.
 
+import os
 import shutil
+import subprocess
+import sys
 import traceback
-import sysconfig
 
-dist_path = "../dist"
+TARGET_PY = "3.13"  # Lambda runtime Python version; pip resolves wheels for this target
+LAMBDA_PLATFORM = "manylinux2014_x86_64"  # change to manylinux2014_aarch64 for arm64 Lambdas
+PACKAGE_DIR = "package"
+REQUIREMENTS_FILE = "requirements.txt"
 
-try: 
 
-    path = sysconfig.get_paths()["purelib"]
+def install_linux_deps():
+    if os.path.isdir(PACKAGE_DIR):
+        shutil.rmtree(PACKAGE_DIR)
+    os.makedirs(PACKAGE_DIR)
+    print(f"Installing {LAMBDA_PLATFORM} wheels for python{TARGET_PY} into {PACKAGE_DIR}/")
+    subprocess.run(
+        [
+            sys.executable, "-m", "pip", "install",
+            "--platform", LAMBDA_PLATFORM,
+            "--target", PACKAGE_DIR,
+            "--implementation", "cp",
+            "--python-version", TARGET_PY,
+            "--only-binary=:all:",
+            "--upgrade",
+            "-q",
+            "-r", REQUIREMENTS_FILE,
+        ],
+        check=True,
+    )
 
-    print("Copy dependencies from ", path)
 
-    shutil.copytree(
-        path,
-        dist_path, 
-        symlinks=True, 
-        ignore=shutil.ignore_patterns("pip", 'pkg_resources', 'setuptools', '_distutils_hack', 'distutils-precedence.pth',
-                               '*.dist-info'))
-    
+try:
+    install_linux_deps()
+
     print("Copy src directory")
+    shutil.copytree("./src", os.path.join(PACKAGE_DIR, "src"))
 
-    shutil.copytree('./src', dist_path + "/src", symlinks=True)
-
-    print("Copy index.py file")
-
-    shutil.copyfile("./index.py", dist_path + "/index.py") 
+    print("Copy index.py")
+    shutil.copyfile("./index.py", os.path.join(PACKAGE_DIR, "index.py"))
 
     print("Zip")
+    shutil.make_archive("plugin", "zip", PACKAGE_DIR)
 
-    shutil.make_archive("plugin", "zip", dist_path)
-
-    shutil.rmtree(dist_path)
-
+    shutil.rmtree(PACKAGE_DIR)
 
 except Exception:
-    shutil.rmtree(dist_path)
+    if os.path.isdir(PACKAGE_DIR):
+        shutil.rmtree(PACKAGE_DIR)
     print("packing plugin failed with error: ", traceback.format_exc())
-
