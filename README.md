@@ -54,7 +54,7 @@ run to create plugin.zip file (the pack script and the zip file parts are only r
 python scripts/pack.py
 ```
 
-`scripts/pack.py` downloads `manylinux2014_x86_64` wheels targeted at the Lambda runtime (Python 3.13 by default) directly into `package/`, so C-extension packages end up as Linux `.so` files even when packing from macOS. The host Python used to run `pack.py` does not need to match the Lambda runtime — pip resolves target-specific wheels via `--python-version`. For arm64 Lambdas, edit `LAMBDA_PLATFORM` in `scripts/pack.py` to `manylinux2014_aarch64`.
+`scripts/pack.py` downloads `manylinux2014_x86_64` wheels targeted at the Lambda runtime (Python 3.14 by default) directly into `package/`, so C-extension packages end up as Linux `.so` files even when packing from macOS. The host Python used to run `pack.py` does not need to match the Lambda runtime — pip resolves target-specific wheels via `--python-version`. For arm64 Lambdas, edit `LAMBDA_PLATFORM` in `scripts/pack.py` to `manylinux2014_aarch64`. For a different Python runtime, edit `TARGET_PY` in `scripts/pack.py`.
 
 Upload the the plugin.zip as with notification subscription to any action for any entity as explained [here](https://docs.biot-med.com/docs/custom-lambda-deployment#plugin-api-call)
 

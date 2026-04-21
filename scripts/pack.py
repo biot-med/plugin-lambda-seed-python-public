@@ -12,7 +12,7 @@ import subprocess
 import sys
 import traceback
 
-TARGET_PY = "3.13"  # Lambda runtime Python version; pip resolves wheels for this target
+TARGET_PY = "3.14"  # Lambda runtime Python version; pip resolves wheels for this target
 LAMBDA_PLATFORM = "manylinux2014_x86_64"  # change to manylinux2014_aarch64 for arm64 Lambdas
 PACKAGE_DIR = "package"
 REQUIREMENTS_FILE = "requirements.txt"
