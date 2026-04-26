@@ -27,6 +27,7 @@ pipeline {
                 script {
                     sh """#!/bin/bash
                        python3 -V
+                       python3 -m pip install --upgrade pip
                        python3 scripts/pack.py
                        ls -la
                     """
