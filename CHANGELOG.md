@@ -1,3 +1,12 @@
+# Version 1.5.8
+**Release Date**: 2026-04-20
+## Changes
+- Pack script installs Linux Lambda wheels directly — no local venv required, and the host Python no longer has to match the Lambda runtime.
+- Bumped dependencies for Python 3.14 compatibility.
+- README: clarified that the venv is for local development only, not required for packing.
+- Removed stray debug log prefix.
+- Bumped User-Agent to match the seed version.
+
 # Version 1.5.6
 **Released by**: Ben Rosencveig **Release Date**: 2025-11-24
 ## Changes

@@ -75,10 +75,10 @@ def login(traceparent):
 
     # Check if we have a cached token that's still valid
     if _is_cached_token_valid():
-        logger.info("ben test - Using cached access token")
+        logger.info("Using cached access token")
         return _access_token_cache
 
-    logger.info("ben test - Fetching new access token")
+    logger.info("Fetching new access token")
     # Cache miss, expired, or about to expire - fetch new token
     if BIOT_BASE_URL is None:
         raise Exception("No BIOT_BASE_URL")

@@ -13,7 +13,9 @@ For the lambda to work as is, the hooktype property must be specified in the hea
 
 ## Setup
 
-First we create the virtual environment - Run in command line (use *python/python3* depends on the installation)
+The virtual environment below is for **local development** (running `local_runner.py`). It is **not** required for building the plugin zip — `scripts/pack.py` installs Linux wheels directly into `package/` without touching any venv. Skip this section if you're only going to pack and upload.
+
+Create the virtual environment - Run in command line (use *python/python3* depends on the installation)
 ```
 python3 -m venv seedenv
 ```
@@ -49,8 +51,10 @@ Add this code in the designated place
 
 run to create plugin.zip file (the pack script and the zip file parts are only relevant for non docker IMAGE plugins, for using the IMAGE deployment package type, scroll down for the docker section)
 ```
-python3 scripts/pack.py
+python scripts/pack.py
 ```
+
+`scripts/pack.py` downloads `manylinux2014_x86_64` wheels targeted at the Lambda runtime (Python 3.14 by default) directly into `package/`, so C-extension packages end up as Linux `.so` files even when packing from macOS. The host Python used to run `pack.py` does not need to match the Lambda runtime — pip resolves target-specific wheels via `--python-version`. For arm64 Lambdas, edit `LAMBDA_PLATFORM` in `scripts/pack.py` to `manylinux2014_aarch64`. For a different Python runtime, edit `TARGET_PY` in `scripts/pack.py`.
 
 Upload the the plugin.zip as with notification subscription to any action for any entity as explained [here](https://docs.biot-med.com/docs/custom-lambda-deployment#plugin-api-call)
 
