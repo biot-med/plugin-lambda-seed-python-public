@@ -4,7 +4,7 @@ set -e
 unixTimeMs=$(date +%s%N | cut -b1-13)
 fullImageName=docker-image:$unixTimeMs
 
-docker build --platform linux/amd64 -t "$fullImageName" .
+DOCKER_BUILDKIT=0 docker build --platform linux/amd64 -t "$fullImageName" .
 docker tag "$fullImageName" "docker-image:latest"
 
 echo "fullImageName=$fullImageName"
