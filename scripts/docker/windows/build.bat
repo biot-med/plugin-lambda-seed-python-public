@@ -7,6 +7,7 @@ for /f "delims=" %%a in (' powershell "[long]([DateTime]::UtcNow - (new-object D
 
 set fullImageName=docker-image:%unixTimeMs%
 
+set DOCKER_BUILDKIT=0
 docker build --platform linux/amd64 -t %fullImageName% .
 docker tag %fullImageName% docker-image:latest
 if %errorlevel% neq 0 exit /b %errorlevel%

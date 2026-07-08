@@ -1,3 +1,8 @@
+# Version 1.5.9
+**Release Date**: 2026-07-07
+## Changes
+- SOFT-9737 Disabled Docker BuildKit (`DOCKER_BUILDKIT=0`) for the `docker build` step in `scripts/docker/{linux,windows}/build.*` and `buildAndPush.*`. BuildKit's default OCI manifest-list/attestation output isn't supported by AWS Lambda's image-based deployment; the legacy builder produces a plain single-platform manifest that Lambda accepts.
+
 # Version 1.5.8
 **Release Date**: 2026-04-20
 ## Changes

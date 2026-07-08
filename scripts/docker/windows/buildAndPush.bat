@@ -8,6 +8,7 @@ for /f "delims=" %%a in (' powershell "[long]([DateTime]::UtcNow - (new-object D
 )
 
 echo Building an image...
+set DOCKER_BUILDKIT=0
 docker build --platform linux/amd64 -t docker-image:%imageTag% .
 if %errorlevel% neq 0 exit /b %errorlevel%
 
