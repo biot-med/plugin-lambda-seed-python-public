@@ -1,3 +1,8 @@
+# Version 1.5.10
+**Release Date**: 2026-10-28
+## Changes
+- SOFT-9950 Bumped `certifi` to 2026.10.23 (security scan: the previous pin still trusted the distrusted eMudhra CA intermediates).
+
 # Version 1.5.9
 **Release Date**: 2026-07-07
 ## Changes
